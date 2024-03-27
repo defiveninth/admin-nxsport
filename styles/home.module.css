@@ -3,7 +3,10 @@
 }
 
 .wrapper {
-	@apply bg-transparent flex w-[420px] rounded-xl border-black border-solid border-2;
+	@apply bg-transparent w-[420px] rounded-xl border-black border-solid border-2 flex flex-col p-5 gap-5;
 	backdrop-filter: blur(4px);
-	padding: 30px 40px;
+}
+
+.formHeader {
+	@apply text-2xl font-semibold text-left;
 }
