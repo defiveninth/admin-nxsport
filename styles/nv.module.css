@@ -5,3 +5,7 @@
 .nvItem {
 	@apply bg-white p-3 rounded-md flex gap-3 items-center;
 }
+
+.main {
+	@apply ml-80  min-h-screen p-5;
+}

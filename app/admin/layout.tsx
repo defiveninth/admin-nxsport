@@ -16,19 +16,19 @@ export default function DashboardLayout({
 				<div>
 					<Image alt='icon' src={'/nx-icon.svg'} width={100} height={100} />
 				</div>
-				<Link href={''} className={S.nvItem}>
+				<Link href={'/admin'} className={S.nvItem}>
 					<Home height={20} width={20} />
 					<span>Главная</span>
 				</Link>
-				<Link href={''} className={S.nvItem}>
+				<Link href={'/admin/students'} className={S.nvItem}>
 					<Users height={20} width={20} />
 					<span>Студенты</span>
 				</Link>
-				<Link href={''} className={S.nvItem}>
+				<Link href={'/admin/disciplines'} className={S.nvItem}>
 					<Notebook height={20} width={20} />
 					<span>Дисциплины</span>
 				</Link>
-				<Link href={''} className={S.nvItem}>
+				<Link href={'/admin/settings'} className={S.nvItem}>
 					<Bolt height={20} width={20} />
 					<span>Настройки</span>
 				</Link>
@@ -37,7 +37,7 @@ export default function DashboardLayout({
 					<span>Выйти</span>
 				</button>
 			</nav>
-			<main>{children}</main>
+			<main className={S.main}>{children}</main>
 		</>
 	)
 }
