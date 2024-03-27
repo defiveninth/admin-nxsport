@@ -1,7 +1,13 @@
+import S from '@/styles/home.module.css'
+
 const Home = () => {
-  return (
-    <h1>Home Page</h1>
-  )
+	return (
+		<main className={S.main}>
+			<div className={S.wrapper}>
+				<h1>NX-Sport | Войти</h1>
+			</div>
+		</main>
+	)
 }
 
 export default Home

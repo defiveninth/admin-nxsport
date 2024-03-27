@@ -1,0 +1,9 @@
+.main {
+	@apply flex justify-center items-center min-h-screen bg-slate-200;
+}
+
+.wrapper {
+	@apply bg-transparent flex w-[420px] rounded-xl border-black border-solid border-2;
+	backdrop-filter: blur(4px);
+	padding: 30px 40px;
+}
