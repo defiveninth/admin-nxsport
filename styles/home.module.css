@@ -1,9 +1,17 @@
 .main {
-	@apply flex justify-center items-center min-h-screen bg-slate-200 select-none;
+	@apply flex justify-center items-center min-h-screen bg-slate-100 select-none;
+}
+
+.red {
+	@apply fixed top-0 left-0 bottom-0 w-20 bg-red-500 flex flex-col items-center;
+}
+
+.red img {
+	@apply mt-4;
 }
 
 .wrapper {
-	@apply bg-transparent w-[420px] rounded-xl border-gray-400 border-solid border-2 flex flex-col p-5 gap-5 bg-white;
+	@apply bg-transparent w-[420px] rounded-xl border-red-500 border-solid border-[3px] flex flex-col p-5 gap-5 bg-white;
 	backdrop-filter: blur(4px);
 }
 

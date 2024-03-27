@@ -1,7 +1,7 @@
 type InputProps = {
 	L: string
 	S: { readonly [key: string]: string; },
-	ID: string
+	I: string
 	T: 'text' | 'password'
 }
 
