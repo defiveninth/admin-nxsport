@@ -1,0 +1,7 @@
+.nv {
+	@apply fixed top-0 left-0 bottom-0 bg-slate-200 w-72 p-5 flex flex-col gap-4;
+}
+
+.nvItem {
+	@apply bg-white p-3 rounded-md flex gap-3 items-center;
+}

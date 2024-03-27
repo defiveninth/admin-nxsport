@@ -13,7 +13,7 @@ const AuthForm: FC = () => {
 		login: '',
 		password: '',
 		error: undefined,
-		loading: true,
+		loading: false,
 	})
 
 	const userNameId: string = useId()

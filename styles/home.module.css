@@ -1,5 +1,5 @@
 .main {
-	@apply flex justify-center items-center min-h-screen bg-slate-100 select-none;
+	@apply flex justify-center items-center min-h-screen select-none;
 }
 
 .red {
