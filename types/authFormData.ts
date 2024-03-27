@@ -1,5 +1,5 @@
 interface IFormData {
-	login: string | undefined,
+	username: string | undefined,
 	password: string | undefined,
 	error: string | undefined,
 	loading: boolean

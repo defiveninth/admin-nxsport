@@ -1,6 +1,6 @@
 import InputProps from '@/types/inputProps'
 
-const FormInput = ({ L, S, I, T } : InputProps) => {
+const FormInput = ({ L, S, I, T, V, O, N } : InputProps) => {
 	return (
 		<div className={S.wrapper}>
 			<label htmlFor={I} className={S.formLabel}>{L}:</label>
@@ -11,7 +11,13 @@ const FormInput = ({ L, S, I, T } : InputProps) => {
 				id={I}
 				type={T}
 				placeholder={L}
+				value={V}
+				onChange={O}
+				name={N}
 			/>
+			{
+				
+			}
 			<div className={S.inputBottom} />
 		</div>
 	)
