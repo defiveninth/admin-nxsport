@@ -1,3 +1,8 @@
 .form {
 	@apply flex flex-col gap-5;
 }
+
+.formInput {
+	@apply h-[60px] text-xl rounded-xl bg-slate-300 font-medium;
+	padding-inline: 20px;
+}
