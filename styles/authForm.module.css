@@ -16,11 +16,14 @@
 	transition: width 0.3s ease;
 }
 
-.formInput:focus + .inputBottom { @apply w-full }
+.formInput:focus + .inputBottom {
+	@apply w-full;
+}
 
 .formLabel {
 	@apply font-semibold text-lg mb-2;
 }
 
-.formButton {
+.formLoading {
+	@apply loading loading-spinner;
 }

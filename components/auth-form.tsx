@@ -13,6 +13,7 @@ const AuthForm: FC = () => {
 		login: '',
 		password: '',
 		error: undefined,
+		loading: true,
 	})
 
 	const userNameId: string = useId()
@@ -22,7 +23,13 @@ const AuthForm: FC = () => {
 		<form className={S.form}>
 			<FormInput S={S} I={userNameId} L='Юзернэйм' T='text' />
 			<FormInput S={S} I={passwordId} L='Пароль' T='password' />
-			<button>Кіру</button>
+			<button className={'btn btn-outline btn-error'}>
+				{formData.loading ? (
+					<span className={S.formLoading}></span>
+				) : (
+					<span>Кіру</span>
+				)}
+			</button>
 		</form>
 	)
 }

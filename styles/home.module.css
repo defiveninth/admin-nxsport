@@ -11,7 +11,7 @@
 }
 
 .wrapper {
-	@apply bg-transparent w-[420px] rounded-xl border-red-500 border-solid border-[3px] flex flex-col p-5 gap-5 bg-white;
+	@apply bg-transparent w-[420px] rounded-xl border-slate-300 border-solid border-[3px] flex flex-col p-5 gap-5 bg-white;
 	backdrop-filter: blur(4px);
 }
 
