@@ -1,14 +1,16 @@
 'use client'
 
-import { FC, useState, ChangeEvent } from 'react'
+import { FC, useState, ChangeEvent, useEffect } from 'react'
 import IData from '@/types/techProps'
 import S1 from '@/styles/main.module.css'
+import getToken from '@/acion/get-token'
 
 const TechWork: FC = () => {
 	const [formData, setFormData] = useState<IData>({
 		techWorks: false,
 		message: '',
 	})
+	const [token, setToken] = useState<string | undefined>('')
 
 	const handleCheckboxClick = () => {
 		setFormData({
@@ -24,6 +26,35 @@ const TechWork: FC = () => {
 			[name]: value,
 		})
 	}
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const token = await getToken()
+
+				const response = await fetch(
+					`http://91.147.92.79:5000/api/admin/setting/seethosework?token=${token}`,
+					{
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+					}
+				)
+
+				if (!response.ok) {
+					throw new Error('Network response was not ok')
+				}
+
+				const data = await response.json()
+				console.log(data) // Log the response data
+			} catch (error) {
+				console.error('There was a problem with the fetch operation:', error)
+			}
+		}
+
+		fetchData()
+	}, [])
 
 	return (
 		<form>

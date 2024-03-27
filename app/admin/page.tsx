@@ -3,10 +3,10 @@ import { Home } from 'lucide-react'
 import Link from 'next/link'
 
 import NavArrow from '@/components/navArrow'
+import TechWork from '@/components/techWork'
 
 import S from '@/styles/navBar.module.css'
 import S1 from '@/styles/main.module.css'
-import TechWork from '@/components/techWork'
 
 const MainPage: FC = () => {
 	return (
