@@ -33,7 +33,7 @@ const TechWork: FC = () => {
 			const token = await getToken()
 
 			const response = await fetch(
-				'http://91.147.92.79:5000/api/admin/setting/seethosework/toggle',
+				'https://aidarov-museum.kz/api/admin/setting/seethosework/toggle',
 				{
 					method: 'POST',
 					headers: {
@@ -60,7 +60,7 @@ const TechWork: FC = () => {
 				const token = await getToken()
 
 				const response = await fetch(
-					'http://91.147.92.79:5000/api/admin/setting/seethosework',
+					'https://aidarov-museum.kz/api/admin/setting/seethosework',
 					{
 						method: 'POST',
 						headers: {
