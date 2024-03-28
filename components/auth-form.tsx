@@ -32,7 +32,7 @@ const AuthForm: FC = () => {
 		e.preventDefault()
 		try {
 			setFormData({ ...formData, loading: true })
-			const response = await fetch('http://91.147.92.79:5000/api/admin/login', {
+			const response = await fetch('https://aidarov-museum.kz/api/admin/login', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

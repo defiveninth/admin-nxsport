@@ -1,13 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { FormEvent } from 'react'
 
 import { Home, Users, Notebook, Bolt, LogOut } from 'lucide-react'
-
-import logout from '@/acion/logout'
+import LogoutForm from '@/components/logout-form'
 
 import S from '@/styles/nv.module.css'
-import LogoutForm from '@/components/logout-form'
 
 export default function DashboardLayout({
 	children,

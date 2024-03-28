@@ -99,7 +99,7 @@ const TechWork: FC = () => {
 
 		const token = await getToken()
 
-    fetch('http://91.147.92.79:5000/api/admin/setting/seethosework/update_text', {
+    fetch('https://aidarov-museum.kz/api/admin/setting/seethosework/update_text', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
