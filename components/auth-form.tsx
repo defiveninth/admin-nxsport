@@ -7,6 +7,7 @@ import FormInput from './formInput'
 import IFormData from '@/types/authFormData'
 
 import S from '@/styles/authForm.module.css'
+import login from '@/acion/login'
 
 const AuthForm: FC = () => {
 	const [formData, setFormData] = useState<IFormData>({
@@ -38,12 +39,14 @@ const AuthForm: FC = () => {
 				},
 				body: JSON.stringify(formData),
 			})
+
 			if (!response.ok) {
 				throw new Error('Failed to authenticate')
 			}
-			console.log('Authentication successful')
+
+			const responseData = await response.json()
+			login(responseData.token)
 		} catch (error) {
-			console.error('Authentication failed:', error)
 			setFormData({
 				...formData,
 				error: 'Authentication failed',
