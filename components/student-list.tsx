@@ -16,6 +16,8 @@ interface Student {
 
 const StudentList: FC = () => {
 	const [students, setStudents] = useState<Array<Student>>([])
+	const [loading, setLoading] = useState<boolean>(true)
+	const [error, setError] = useState<string | null>(null)
 
 	const fetchStudents = async () => {
 		try {
@@ -35,8 +37,10 @@ const StudentList: FC = () => {
 
 			const { users } = await response.json()
 			setStudents(users)
+			setLoading(false)
 		} catch (error) {
-			console.error('There was a problem with the fetch operation:', error)
+			setError('There was a problem with fetching students data.')
+			setLoading(false)
 		}
 	}
 
@@ -45,29 +49,47 @@ const StudentList: FC = () => {
 	}, [])
 
 	return (
-		<div className={styles['cool-table']}>
-			<table>
-				<thead>
-					<tr>
-						<th></th>
-						<th>Фамилия</th>
-						<th>Имя</th>
-						<th>Почта</th>
-						<th>Подтверден</th>
-					</tr>
-				</thead>
-				<tbody>
-					{students.map((student: Student) => (
-						<tr key={student.id}>
-							<td>{student.id}</td>
-							<td>{student.first_name}</td>
-							<td>{student.last_name}</td>
-							<td>{student.email}</td>
-							<td>{student.verify}</td>
-						</tr>
-					))}
-				</tbody>
-			</table>
+		<div className={styles['container']}>
+			{loading ? (
+				<div className={styles['loading']}>Loading...</div>
+			) : error ? (
+				<div className={styles['error']}>{error}</div>
+			) : students.length === 0 ? (
+				<div className={styles['empty']}>No students found.</div>
+			) : (
+				<div className={styles['cool-table']}>
+					<table>
+						<thead>
+							<tr>
+								<th></th>
+								<th>Фамилия</th>
+								<th>Имя</th>
+								<th>Почта</th>
+								<th>Подтвержден</th>
+							</tr>
+						</thead>
+						<tbody>
+							{students.map((student: Student) => (
+								<tr key={student.id}>
+									<td>{student.id}</td>
+									<td>{student.last_name}</td>
+									<td>{student.first_name}</td>
+									<td>{student.email}</td>
+									<td
+										className={
+											student.verify
+												? 'text-blue-500 font-semibold'
+												: 'text-red-500 font-semibold'
+										}
+									>
+										{student.verify ? 'да' : 'нет'}
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+			)}
 		</div>
 	)
 }

@@ -1,26 +1,44 @@
-/* StudentList.module.css */
+/* studentList.module.css */
+.loading,
+.error,
+.empty {
+	padding: 20px;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	background-color: #f9f9f9;
+	text-align: center;
+	width: 300px;
+	margin: 20px auto; /* Center horizontally */
+}
+
+.error {
+	color: #ff0000;
+}
+
 .cool-table {
 	font-family: Arial, sans-serif;
+	margin: 20px auto; /* Center horizontally */
 }
 
 .cool-table table {
 	width: 100%;
 	border-collapse: collapse;
+	border: 2px solid #ccc;
 }
 
 .cool-table th,
 .cool-table td {
+	@apply p-2 text-center;
 	border: 1px solid #ddd;
-	padding: 8px;
 }
 
 .cool-table th {
-	background-color: #f2f2f2;
-	text-align: left;
+	@apply text-center bg-slate-100;
+	text-align: center;
 }
 
 .cool-table tr:nth-child(even) {
-	background-color: #f2f2f2;
+	@apply bg-slate-200;
 }
 
 .cool-table tr:hover {
