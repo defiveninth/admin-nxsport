@@ -1,7 +1,9 @@
 import { FC } from 'react'
 import { Home } from 'lucide-react'
 import Link from 'next/link'
+
 import NavArrow from '@/components/navArrow'
+import StudentList from '@/components/student-list'
 
 import S from '@/styles/navBar.module.css'
 import S1 from '@/styles/main.module.css'
@@ -17,7 +19,7 @@ const StudentPage: FC = () => {
 				</Link>
 			</div>
 			<section className={S1.techWork}>
-				
+				<StudentList />
 			</section>
 		</>
 	)
