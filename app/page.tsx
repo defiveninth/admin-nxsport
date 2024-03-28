@@ -5,12 +5,14 @@ import type { Metadata } from 'next'
 import AuthForm from '@/components/auth-form'
 
 import S from '@/styles/home.module.css'
+import toInside from '@/acion/auth-redirect'
 
 export const metadata: Metadata = {
 	title: 'Narxoz Sport | Кіру',
 }
 
-const Home: FC = () => {
+const Home: FC = async () => {
+	await toInside()
 	return (
 		<main className={S.main}>
 			<div className={S.red}>

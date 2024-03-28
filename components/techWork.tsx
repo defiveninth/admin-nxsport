@@ -95,33 +95,36 @@ const TechWork: FC = () => {
 	}, [])
 
 	const updateText = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+		e.preventDefault()
 
 		const token = await getToken()
 
-    fetch('https://aidarov-museum.kz/api/admin/setting/seethosework/update_text', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+		fetch(
+			'https://aidarov-museum.kz/api/admin/setting/seethosework/update_text',
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
 					token,
-					new_text: formData.text
-				})
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data);
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-    });
-};
+					new_text: formData.text,
+				}),
+			}
+		)
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Network response was not ok')
+				}
+				return response.json()
+			})
+			.then(data => {
+				console.log(data)
+			})
+			.catch(error => {
+				console.error('There was a problem with the fetch operation:', error)
+			})
+	}
 
 	return (
 		<form className={S1.form} onSubmit={updateText}>
@@ -147,7 +150,7 @@ const TechWork: FC = () => {
 						formData.status ? 'bg-white' : 'bg-slate-500'
 					}`}
 					onChange={handleInputChange}
-					value={formData.text}
+					value={formData.status == 1 ? formData.text : ''}
 					placeholder={
 						!formData.status
 							? 'Технические работы отключено'
