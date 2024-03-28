@@ -1,5 +1,5 @@
 .techWork {
-	@apply flex p-5 rounded-lg;
+	@apply flex p-5 rounded-lg flex-col;
 	border: solid 2px rgb(213, 213, 213);
 }
 
@@ -18,3 +18,5 @@
 .secLine {
 	@apply flex gap-4 h-20 items-center;
 }
+
+.form {}

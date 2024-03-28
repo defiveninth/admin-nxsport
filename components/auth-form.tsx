@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useId, useState, ChangeEvent } from 'react'
+import { FC, useId, useState, ChangeEvent, FormEvent } from 'react'
 
 import FormInput from './formInput'
 
@@ -28,7 +28,7 @@ const AuthForm: FC = () => {
 		})
 	}
 
-	const Submit = async (e: React.FormEvent<HTMLFormElement>) => {
+	const Submit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		try {
 			setFormData({ ...formData, loading: true })

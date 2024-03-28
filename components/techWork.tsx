@@ -1,6 +1,7 @@
 'use client'
 
-import { FC, useState, ChangeEvent, useEffect } from 'react'
+import { FC, useState, ChangeEvent, useEffect, FormEvent } from 'react'
+
 import IData from '@/types/techProps'
 import getToken from '@/acion/get-token'
 
@@ -12,7 +13,6 @@ const TechWork: FC = () => {
 		text: '',
 		isLoading: true,
 	})
-	const [token, setToken] = useState<string | undefined>('')
 
 	const handleCheckboxClick = () => {
 		setFormData({
@@ -94,8 +94,37 @@ const TechWork: FC = () => {
 		fetchData()
 	}, [])
 
+	const updateText = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+		const token = await getToken()
+
+    fetch('http://91.147.92.79:5000/api/admin/setting/seethosework/update_text', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+					token,
+					new_text: formData.text
+				})
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+};
+
 	return (
-		<form>
+		<form className={S1.form} onSubmit={updateText}>
 			<div className={S1.line}>
 				<h2>Предупредить технические работы:</h2>
 				{formData.isLoading ? (
