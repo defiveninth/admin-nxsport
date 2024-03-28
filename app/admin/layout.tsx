@@ -4,13 +4,16 @@ import Image from 'next/image'
 import { Home, Users, Notebook, Bolt, LogOut } from 'lucide-react'
 import LogoutForm from '@/components/logout-form'
 
+import toOutside from '@/acion/getOutside'
+
 import S from '@/styles/nv.module.css'
 
-export default function DashboardLayout({
+export default async function DashboardLayout ({
 	children,
 }: {
 	children: React.ReactNode
 }) {
+	await toOutside()
 	return (
 		<>
 			<nav className={S.nv}>
