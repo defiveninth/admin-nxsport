@@ -51,7 +51,9 @@ const StudentList: FC = () => {
 	return (
 		<div className={styles['container']}>
 			{loading ? (
-				<div className={styles['loading']}>Loading...</div>
+				<div className='flex justify-center'>
+					<span className='loading loading-spinner text-error'></span>
+				</div>
 			) : error ? (
 				<div className={styles['error']}>{error}</div>
 			) : students.length === 0 ? (
