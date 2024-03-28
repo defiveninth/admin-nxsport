@@ -3,11 +3,12 @@
 import { FC, useId, useState, ChangeEvent, FormEvent } from 'react'
 
 import FormInput from './formInput'
-
 import IFormData from '@/types/authFormData'
+import login from '@/acion/login'
+
+import SERVER from '@/data/url'
 
 import S from '@/styles/authForm.module.css'
-import login from '@/acion/login'
 
 const AuthForm: FC = () => {
 	const [formData, setFormData] = useState<IFormData>({
@@ -32,7 +33,7 @@ const AuthForm: FC = () => {
 		e.preventDefault()
 		try {
 			setFormData({ ...formData, loading: true })
-			const response = await fetch('https://aidarov-museum.kz/api/admin/login', {
+			const response = await fetch(`${SERVER}/login`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

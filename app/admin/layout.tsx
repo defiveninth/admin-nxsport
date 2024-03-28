@@ -14,6 +14,7 @@ export default async function DashboardLayout ({
 	children: React.ReactNode
 }) {
 	await toOutside()
+	
 	return (
 		<>
 			<nav className={S.nv}>

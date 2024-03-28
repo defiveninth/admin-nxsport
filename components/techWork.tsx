@@ -5,6 +5,8 @@ import { FC, useState, ChangeEvent, useEffect, FormEvent } from 'react'
 import IData from '@/types/techProps'
 import getToken from '@/acion/get-token'
 
+import SERVER from '@/data/url'
+
 import S1 from '@/styles/main.module.css'
 
 const TechWork: FC = () => {
@@ -35,7 +37,7 @@ const TechWork: FC = () => {
 			const token = await getToken()
 
 			const response = await fetch(
-				'https://aidarov-museum.kz/api/admin/setting/seethosework/toggle',
+				`${SERVER}/setting/seethosework/toggle`,
 				{
 					method: 'POST',
 					headers: {
@@ -65,7 +67,7 @@ const TechWork: FC = () => {
 				const token = await getToken()
 
 				const response = await fetch(
-					'https://aidarov-museum.kz/api/admin/setting/seethosework',
+					`${SERVER}/setting/seethosework`,
 					{
 						method: 'POST',
 						headers: {
@@ -100,7 +102,7 @@ const TechWork: FC = () => {
 		const token = await getToken()
 
 		fetch(
-			'https://aidarov-museum.kz/api/admin/setting/seethosework/update_text',
+			`${SERVER}/setting/seethosework/update_text`,
 			{
 				method: 'POST',
 				headers: {
