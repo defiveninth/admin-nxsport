@@ -1,6 +1,7 @@
 'use client'
 
 import React, { FC, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Trash2 } from 'lucide-react'
 import getToken from '@/acion/get-token'
 import SERVER from '@/data/url'
@@ -14,6 +15,8 @@ const StudentList: FC = () => {
 	const [error, setError] = useState<string | null>(null)
 	const [searchQuery, setSearchQuery] = useState<string>('')
 
+	const router = useRouter()
+	
 	const fetchStudents = async () => {
 		try {
 			const token = await getToken()
@@ -85,7 +88,7 @@ const StudentList: FC = () => {
 				<div className={styles['empty']}>No students found.</div>
 			) : (
 				<div className={styles['cool-table']}>
-					<div className='flex flex-col'>
+					<div className='flex flex-col gap-2 pb-5'>
 						<input
 							type='text'
 							placeholder='Поиск по id, ФИО или почте:'
@@ -93,6 +96,24 @@ const StudentList: FC = () => {
 							value={searchQuery}
 							onChange={e => setSearchQuery(e.target.value)}
 						/>
+						<div role='alert' className='alert'>
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								fill='none'
+								viewBox='0 0 24 24'
+								className='stroke-info shrink-0 w-6 h-6'
+							>
+								<path
+									strokeLinecap='round'
+									strokeLinejoin='round'
+									strokeWidth='2'
+									d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+								></path>
+							</svg>
+							<span>
+								Чтобы увидеть дисциплины пользователя нажмите на него.
+							</span>
+						</div>
 					</div>
 					<table>
 						<thead>
@@ -107,7 +128,7 @@ const StudentList: FC = () => {
 						</thead>
 						<tbody>
 							{filteredStudents.map((student: Student) => (
-								<tr key={student.id}>
+								<tr key={student.id} onClick={() => router.push(`/admin/students/${student.id}`)}>
 									<td>{student.id}</td>
 									<td>{student.last_name}</td>
 									<td>{student.first_name}</td>
