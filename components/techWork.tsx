@@ -1,6 +1,7 @@
 'use client'
 
 import { FC, useState, ChangeEvent, useEffect, FormEvent } from 'react'
+
 import getToken from '@/acion/get-token'
 import SERVER from '@/data/url'
 import IData from '@/types/techProps'
@@ -112,9 +113,9 @@ const TechWork: FC = () => {
 			})
 			.then(data => {
 				console.log(data)
-				setShowAlert(true) // Show alert after updating text
+				setShowAlert(true) 
 				setTimeout(() => {
-					setShowAlert(false) // Hide alert after 3 seconds
+					setShowAlert(false)
 				}, 3000)
 			})
 			.catch(error => {

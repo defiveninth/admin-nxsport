@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import getToken from '@/acion/get-token'
 import SERVER from '@/data/url'
 
@@ -18,6 +18,7 @@ const StudentList: FC = () => {
 	const [students, setStudents] = useState<Array<Student>>([])
 	const [loading, setLoading] = useState<boolean>(true)
 	const [error, setError] = useState<string | null>(null)
+	const [searchQuery, setSearchQuery] = useState<string>('')
 
 	const fetchStudents = async () => {
 		try {
@@ -48,6 +49,12 @@ const StudentList: FC = () => {
 		fetchStudents()
 	}, [])
 
+	const filteredStudents = students.filter(student =>
+		`${student.id} ${student.first_name} ${student.last_name} ${student.email}`
+			.toLowerCase()
+			.includes(searchQuery.toLowerCase())
+	)
+
 	return (
 		<div className={styles['container']}>
 			{loading ? (
@@ -60,6 +67,15 @@ const StudentList: FC = () => {
 				<div className={styles['empty']}>No students found.</div>
 			) : (
 				<div className={styles['cool-table']}>
+					<div className='flex flex-col'>
+						<input
+							type='text'
+							placeholder='Поиск по id, ФИО или почте:'
+							className='p-4 m-1 bg-zinc-300 outline-none border-none focus:border focus:border-y-red-300 focus:border-solid rounded-lg'
+							value={searchQuery}
+							onChange={e => setSearchQuery(e.target.value)}
+						/>
+					</div>
 					<table>
 						<thead>
 							<tr>
@@ -71,7 +87,7 @@ const StudentList: FC = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{students.map((student: Student) => (
+							{filteredStudents.map((student: Student) => (
 								<tr key={student.id}>
 									<td>{student.id}</td>
 									<td>{student.last_name}</td>
