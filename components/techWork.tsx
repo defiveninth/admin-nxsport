@@ -2,13 +2,15 @@
 
 import { FC, useState, ChangeEvent, useEffect } from 'react'
 import IData from '@/types/techProps'
-import S1 from '@/styles/main.module.css'
 import getToken from '@/acion/get-token'
+
+import S1 from '@/styles/main.module.css'
 
 const TechWork: FC = () => {
 	const [formData, setFormData] = useState<IData>({
 		status: 1,
 		text: '',
+		isLoading: true,
 	})
 	const [token, setToken] = useState<string | undefined>('')
 
@@ -39,7 +41,7 @@ const TechWork: FC = () => {
 					headers: {
 						'Content-Type': 'application/json',
 					},
-					body: JSON.stringify({ token: '777a9a32e10e590aa337fd0b0ce53726' }),
+					body: JSON.stringify({ token }),
 				}
 			)
 
@@ -47,8 +49,11 @@ const TechWork: FC = () => {
 				throw new Error('Network response was not ok')
 			}
 
-			const data = await response.json()
-			setFormData(data)
+			const { status } = await response.json()
+			setFormData(prevState => ({
+				...prevState,
+				status: status,
+			}))
 		} catch (error) {
 			console.error('There was a problem with the fetch operation:', error)
 		}
@@ -66,7 +71,7 @@ const TechWork: FC = () => {
 						headers: {
 							'Content-Type': 'application/json',
 						},
-						body: JSON.stringify({ token: '777a9a32e10e590aa337fd0b0ce53726' }),
+						body: JSON.stringify({ token }),
 					}
 				)
 
@@ -74,44 +79,54 @@ const TechWork: FC = () => {
 					throw new Error('Network response was not ok')
 				}
 
-				const data = await response.json()
-				setFormData(data)
+				const { status, text } = await response.json()
+				setFormData(prevState => ({
+					...prevState,
+					isLoading: false,
+					status: status,
+					text: text,
+				}))
 			} catch (error) {
 				console.error('There was a problem with the fetch operation:', error)
 			}
 		}
 
 		fetchData()
-
-		console.log(formData)
 	}, [])
 
 	return (
 		<form>
 			<div className={S1.line}>
 				<h2>Предупредить технические работы:</h2>
-				<input
-					type='checkbox'
-					className='toggle toggle-error'
-					checked={formData.status == 1}
-					onChange={handleCheckboxClick}
-				/>
+				{formData.isLoading ? (
+					<span className='loading loading-spinner text-error'></span>
+				) : (
+					<input
+						type='checkbox'
+						className='toggle toggle-error'
+						checked={formData.status == 1}
+						onChange={handleCheckboxClick}
+					/>
+				)}
 			</div>
-			<input
-				name='message'
-				disabled={formData.status == 1}
-				id=''
-				className={`w-full px-4 h-16 mt-5 outline-none border-none rounded-lg ${
-					!formData.status ? 'bg-white' : 'bg-slate-500'
-				}`}
-				onChange={handleInputChange}
-				value={formData.text}
-				placeholder={
-					formData.status == 0
-						? 'Технические работы отключено'
-						: 'Ваше сообшение:'
-				}
-			/>
+			<div className={S1.secLine}>
+				<input
+					name='text'
+					disabled={formData.status == 0}
+					id=''
+					className={`w-full px-4 h-12 outline-none border-none rounded-lg ${
+						formData.status ? 'bg-white' : 'bg-slate-500'
+					}`}
+					onChange={handleInputChange}
+					value={formData.text}
+					placeholder={
+						!formData.status
+							? 'Технические работы отключено'
+							: 'Ваше сообшение:'
+					}
+				/>
+				<button className='btn btn-outline btn-primary'>Сохранить</button>
+			</div>
 		</form>
 	)
 }
