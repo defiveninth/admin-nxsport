@@ -1,18 +1,12 @@
 'use client'
 
 import React, { FC, useEffect, useState } from 'react'
+import { Trash2 } from 'lucide-react'
 import getToken from '@/acion/get-token'
 import SERVER from '@/data/url'
+import Student from '@/types/student'
 
 import styles from '@/styles/studentList.module.css'
-
-interface Student {
-	id: number
-	first_name: string
-	last_name: string
-	email: string
-	verify: 0 | 1
-}
 
 const StudentList: FC = () => {
 	const [students, setStudents] = useState<Array<Student>>([])
@@ -55,6 +49,30 @@ const StudentList: FC = () => {
 			.includes(searchQuery.toLowerCase())
 	)
 
+	const removeUser = async (id: number) => {
+		try {
+			const token = await getToken()
+
+			const response = await fetch(`${SERVER}/user/delete`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ id, token }),
+			})
+
+			if (!response.ok) {
+				throw new Error('Network response was not ok')
+			}
+
+			setStudents(prevStudents =>
+				prevStudents.filter(student => student.id !== id)
+			)
+		} catch (error) {
+			console.error('Error deleting user:', error)
+		}
+	}
+
 	return (
 		<div className={styles['container']}>
 			{loading ? (
@@ -84,6 +102,7 @@ const StudentList: FC = () => {
 								<th>Имя</th>
 								<th>Почта</th>
 								<th>Подтвержден</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -101,6 +120,11 @@ const StudentList: FC = () => {
 										}
 									>
 										{student.verify ? 'да' : 'нет'}
+									</td>
+									<td>
+										<button onClick={() => removeUser(student.id)}>
+											<Trash2 />
+										</button>
 									</td>
 								</tr>
 							))}
