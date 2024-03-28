@@ -7,16 +7,17 @@ import getToken from '@/acion/get-token'
 
 const TechWork: FC = () => {
 	const [formData, setFormData] = useState<IData>({
-		techWorks: false,
-		message: '',
+		status: 1,
+		text: '',
 	})
 	const [token, setToken] = useState<string | undefined>('')
 
 	const handleCheckboxClick = () => {
 		setFormData({
 			...formData,
-			techWorks: !formData.techWorks,
+			status: !formData.status,
 		})
+		toggleStatus()
 	}
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,18 +28,45 @@ const TechWork: FC = () => {
 		})
 	}
 
+	const toggleStatus = async () => {
+		try {
+			const token = await getToken()
+
+			const response = await fetch(
+				'http://91.147.92.79:5000/api/admin/setting/seethosework/toggle',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ token: '777a9a32e10e590aa337fd0b0ce53726' }),
+				}
+			)
+
+			if (!response.ok) {
+				throw new Error('Network response was not ok')
+			}
+
+			const data = await response.json()
+			setFormData(data)
+		} catch (error) {
+			console.error('There was a problem with the fetch operation:', error)
+		}
+	}
+
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const token = await getToken()
 
 				const response = await fetch(
-					`http://91.147.92.79:5000/api/admin/setting/seethosework?token=${token}`,
+					'http://91.147.92.79:5000/api/admin/setting/seethosework',
 					{
-						method: 'GET',
+						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
 						},
+						body: JSON.stringify({ token: '777a9a32e10e590aa337fd0b0ce53726' }),
 					}
 				)
 
@@ -47,13 +75,15 @@ const TechWork: FC = () => {
 				}
 
 				const data = await response.json()
-				console.log(data) // Log the response data
+				setFormData(data)
 			} catch (error) {
 				console.error('There was a problem with the fetch operation:', error)
 			}
 		}
 
 		fetchData()
+
+		console.log(formData)
 	}, [])
 
 	return (
@@ -63,21 +93,21 @@ const TechWork: FC = () => {
 				<input
 					type='checkbox'
 					className='toggle toggle-error'
-					checked={formData.techWorks}
-					onClick={handleCheckboxClick}
+					checked={formData.status == 1}
+					onChange={handleCheckboxClick}
 				/>
 			</div>
 			<input
 				name='message'
-				disabled={formData.techWorks}
+				disabled={formData.status == 1}
 				id=''
 				className={`w-full px-4 h-16 mt-5 outline-none border-none rounded-lg ${
-					!formData.techWorks ? 'bg-white' : 'bg-slate-500'
+					!formData.status ? 'bg-white' : 'bg-slate-500'
 				}`}
 				onChange={handleInputChange}
-				value={formData.message}
+				value={formData.text}
 				placeholder={
-					formData.techWorks
+					formData.status == 0
 						? 'Технические работы отключено'
 						: 'Ваше сообшение:'
 				}
