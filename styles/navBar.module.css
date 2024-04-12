@@ -1,7 +1,0 @@
-.navBar {
-	@apply flex gap-2 items-center;
-}
-
-.navItem {
-	@apply flex gap-2;
-}
