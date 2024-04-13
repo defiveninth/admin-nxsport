@@ -6,7 +6,7 @@ import '@/styles/globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-	title: 'Narxoz Sport | Главная',
+  title: 'Narxoz Sport',
 }
 
 export default function RootLayout({
