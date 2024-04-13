@@ -1,9 +1,13 @@
 import { FC } from 'react'
-import S from '@/styles/nav-bar.module.css'
+import Nav from '@/components/nav'
+
 
 const Controll: FC = () => {
 	return (
-		<nav className={ S.nav }>123</nav>
+		<>
+			<Nav now='sections' />
+			<main className='ml-[320px]'>123</main>
+		</>
 	)
 }
 

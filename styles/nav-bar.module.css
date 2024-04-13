@@ -1,3 +1,7 @@
 .nav {
-	@apply fixed top-0 left-0 bottom-0 bg-red-500 w-[300px]
+	@apply fixed top-0 left-0 bottom-0 w-[300px] flex flex-col rounded-xl gap-2
+}
+
+.navTitle {
+	@apply text-sm ml-4
 }
