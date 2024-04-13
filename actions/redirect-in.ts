@@ -3,7 +3,7 @@
 import { redirect } from 'next/navigation'
 
 const redirectIn = () => {
-	redirect('/controll')
+	redirect('/sections')
 }
 
 export default redirectIn

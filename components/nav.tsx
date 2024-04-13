@@ -12,7 +12,7 @@ const Nav: FC<INavProps> = ({ now }) => {
 			<nav className={S.nav}>
 				<ProfileCard />
 				<NavTitle text='Меню' />
-				<NavItem to='/controll' icon={BookA} text='Секций' now={ now === 'sections' } />
+				<NavItem to='/sections' icon={BookA} text='Секций' now={ now === 'sections' } />
 				<NavItem to='/news' icon={Newspaper} text='Новости' now={ now === 'news' } />
 				<NavItem to='/actions' icon={Activity} text='Действий' now={ now === 'actions' } />
 				<NavTitle text='Пользователей' />

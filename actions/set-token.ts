@@ -7,7 +7,7 @@ const setToken = (T: string, shouldRedirect?: boolean) => {
 	const cookieStore = cookies()
 	cookieStore.set('token', T)
 
-	if (shouldRedirect) redirect('/controll')
+	if (shouldRedirect) redirect('/sections')
 }
 
 export default setToken
