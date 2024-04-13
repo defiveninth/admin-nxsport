@@ -1,0 +1,15 @@
+.form {
+	@apply flex flex-col gap-5
+}
+
+.form label {
+	@apply input input-bordered flex items-center gap-2
+}
+
+.form input {
+	@apply grow
+}
+
+.form button {
+	@apply btn
+}
