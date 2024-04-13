@@ -1,0 +1,11 @@
+.cardWhileLoading {
+	@apply h-32 bg-[#f6f6f6] flex items-center justify-center rounded-xl
+}
+
+.cardWhenLoaded {
+	@apply h-32 bg-[#f6f6f6] flex items-center gap-4 pl-6 rounded-xl
+}
+
+.loader {
+	@apply loading loading-spinner text-primary
+}
