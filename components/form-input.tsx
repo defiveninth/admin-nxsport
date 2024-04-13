@@ -10,7 +10,7 @@ const FormInput: FC<IFormInputProps> = ({ icon: Icon, T, placeholder, length, da
 					type={ T }
 					placeholder={ placeholder }
 					minLength={ length }
-					value={typeof data[name] === 'boolean' ? '' : data[name]}
+					value={ eval(`data.${name}`) }
 					name={ name }
 					onChange={ e => onChange(e, name) }
 				/>

@@ -18,6 +18,7 @@ const ProfileCard: FC = () => {
   useEffect(() => {
     const fetchData = async () => {
 		const T = await checkToken()
+		if (!T) signOut()
       try {
         const response = await fetch('http://localhost:3001/auth/get-admin-data', {
           method: 'POST',
