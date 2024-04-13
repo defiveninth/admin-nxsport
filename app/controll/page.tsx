@@ -6,7 +6,7 @@ const Controll: FC = () => {
 	return (
 		<>
 			<Nav now='sections' />
-			<main className='ml-[320px]'>123</main>
+			<main className='ml-[320px]'>sections</main>
 		</>
 	)
 }

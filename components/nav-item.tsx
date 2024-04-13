@@ -1,16 +1,11 @@
 import { FC } from 'react'
 import Link from 'next/link'
+import INavItemProps from '@/types/nav-item.props'
 
-interface INavItemProps {
-  icon: FC<any>
-  text: string
-	now: boolean
-}
-
-const NavItem: FC<INavItemProps> = ({ icon: Icon, text, now }) => {
+const NavItem: FC<INavItemProps> = ({ icon: Icon, text, now, to }) => {
   return (
     <>
-      <Link href={'/sections'} className='px-6 py-4 flex gap-4'>
+      <Link href={to} className={`px-6 py-4 flex gap-4 rounded-xl ${now && 'bg-[#EFEEFF] text-[#6E60FF]'}`}>
         <Icon />
         <span>{text}</span>
       </Link>
