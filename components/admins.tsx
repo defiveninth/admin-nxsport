@@ -7,8 +7,7 @@ import { CirclePlus } from 'lucide-react'
 const AdminList: FC = () => {
 	const inputRef = useRef<HTMLInputElement>(null)
 
-	const isMac =
-		typeof window !== 'undefined' && window.navigator.platform === 'MacIntel'
+	const isMac = typeof window !== 'undefined' && window.navigator.platform === 'MacIntel'
 
 	const handleShortcut = (event: KeyboardEvent) => {
 		if ((isMac ? event.metaKey : event.ctrlKey) && event.key === 'k') {

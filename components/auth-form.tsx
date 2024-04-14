@@ -23,15 +23,16 @@ const AuthForm: FC = () => {
 	const [formData, setFormData] = useState<IFormData>({
 		username: '',
 		password: '',
-		error: '',
 		isLoading: false,
 	})
+
+	const [error, setError] = useState<string>('')
 
 	const handleChange = (
 		e: ChangeEvent<HTMLInputElement>,
 		field: keyof IFormData
 	) => {
-    if (formData.error) setFormData({ ...formData, error: '' })
+		if (error) setError('')
 		const { value } = e.target
 		setFormData(prevData => ({
 			...prevData,
@@ -42,6 +43,7 @@ const AuthForm: FC = () => {
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		setFormData({ ...formData, isLoading: true })
+
 		try {
 			const response = await fetch('http://localhost:3001/auth/sign-in', {
 				method: 'POST',
@@ -53,19 +55,21 @@ const AuthForm: FC = () => {
 					password: formData.password,
 				}),
 			})
+
 			const res = await response.json()
-			if (response.ok) setToken(res.token, true)
-			else
-				setFormData({
-					...formData,
-					error: 'Ошибка авторизаций, неверные данные',
-				})
-		} catch(e) {
-      setFormData({
-        ...formData,
-        error: 'Ошибка авторизаций, Сервер не отвечает',
-      })
-    } finally {
+
+			if (response.ok) {
+				setToken(res.token, true)
+			} else if (response.status === 404) {
+				setError('Ошибка авторизаций, неверные данные')
+			} else if (response.status >= 500) {
+				setError('Ошибка авторизаций, Сервер не отвечает')
+			} else {
+				setError('Произошла ошибка при обработке запроса')
+			}
+		} catch (e) {
+			setError('Произошла ошибка при обработке запроса')
+		} finally {
 			setFormData({ ...formData, isLoading: false })
 		}
 	}
@@ -73,24 +77,24 @@ const AuthForm: FC = () => {
 	return (
 		<form className={S.form} onSubmit={handleSubmit}>
 			<FormInput
-        icon={ UsernameIcon }
-        T='text'
-        length={5}
-        placeholder='Username'
-        data={formData}
-        onChange={ handleChange }
-        name='username'
-      />
-      <FormInput
-        icon={ PasswordIcon }
-        T='password'
-        length={5}
-        placeholder='Password'
-        data={formData}
-        onChange={ handleChange }
-        name='password'
-      />
-			{formData.error && <FormError error={formData.error} />}
+				icon={UsernameIcon}
+				T='text'
+				length={5}
+				placeholder='Username'
+				data={formData}
+				onChange={handleChange}
+				name='username'
+			/>
+			<FormInput
+				icon={PasswordIcon}
+				T='password'
+				length={5}
+				placeholder='Password'
+				data={formData}
+				onChange={handleChange}
+				name='password'
+			/>
+			{error && <FormError error={error} />}
 			<button>
 				{formData.isLoading ? (
 					<span className='loading loading-infinity loading-md'></span>
