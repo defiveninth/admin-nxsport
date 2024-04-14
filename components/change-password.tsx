@@ -53,7 +53,6 @@ const ChangePassword: FC = () => {
 		setError('')
 
 		const T = await checkToken()
-		if (!T) signOut()
 
 		try {
 			const response = await fetch(
@@ -115,7 +114,7 @@ const ChangePassword: FC = () => {
 					minLength={5}
 				/>
 				{success && <FormSuccess />}
-				{success && <FormError error={error} />}
+				{error && <FormError error={error} />}
 				<button type='submit'>Изменить</button>
 			</form>
 			<FormWarning />

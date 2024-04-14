@@ -3,10 +3,10 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-const signOut = () => {
+const signOut = (P?: string) => {
 	const cookieStore = cookies()
 	cookieStore.delete('token')
-	redirect('/')
+	redirect(P ? P : '/')
 }
 
 export default signOut
