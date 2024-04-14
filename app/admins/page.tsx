@@ -1,16 +1,33 @@
 import { FC } from 'react'
 import type { Metadata } from 'next'
+import { UserCheck } from 'lucide-react'
+import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
+import IRoute from '@/types/route'
+import AdminList from '@/components/admins'
 
 export const metadata: Metadata = {
-  title: 'Нархоз Спорт | Админы',
+	title: 'Нархоз Спорт | Админы',
 }
 
+const route: Array<IRoute> = [
+	{
+		icon: UserCheck,
+		route: 'Админы',
+		url: '/admins',
+	},
+]
+
 const Admins: FC = () => {
+	
+
 	return (
 		<>
 			<Nav now='admins' />
-			<main className='ml-[320px]'>admins</main>
+			<main className='ml-[320px]'>
+				<CurrentRoute route={route} />
+				<AdminList />
+			</main>
 		</>
 	)
 }
