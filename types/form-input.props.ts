@@ -1,14 +1,14 @@
 import { ChangeEvent, FC } from 'react'
-import IFormData from './formdata'
+import { ISignInData } from './formdata'
 
 interface IFormInputProps {
 	icon: FC<any>,
 	T: 'text' | 'password',
 	placeholder: string
 	length: number,
-	data: IFormData,
-	onChange: (e: ChangeEvent<HTMLInputElement>, field: keyof IFormData) => void,
-	name: keyof IFormData
+	data: ISignInData,
+	onChange: (e: ChangeEvent<HTMLInputElement>, field: keyof ISignInData) => void,
+	name: keyof ISignInData
 }
 
 export default IFormInputProps

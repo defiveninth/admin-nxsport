@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react'
+import { FC, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { CirclePlus } from 'lucide-react'
 import IAdminInputProps from '@/types/admin-input.props'
@@ -9,14 +9,14 @@ const AdminInput: FC<IAdminInputProps> = ({ query, setQuery }) => {
 
 	const isMac = typeof window !== 'undefined' && window.navigator.platform === 'MacIntel'
 
-	const handleShortcut = (event: KeyboardEvent) => {
+	const handleShortcut = useCallback((event: KeyboardEvent) => {
 		if ((isMac ? event.metaKey : event.ctrlKey) && event.key === 'k') {
 			event.preventDefault()
 			if (inputRef.current) {
 				inputRef.current.focus()
 			}
 		}
-	}
+	}, [inputRef, isMac])
 
 	useEffect(() => {
 		document.addEventListener('keydown', handleShortcut)
@@ -24,7 +24,7 @@ const AdminInput: FC<IAdminInputProps> = ({ query, setQuery }) => {
 		return () => {
 			document.removeEventListener('keydown', handleShortcut)
 		}
-	}, [])
+	}, [handleShortcut])
 
 	return (
 		<>

@@ -13,3 +13,11 @@
 .username {
 	@apply text-blue-600 hover:underline;
 }
+
+.loadWrapper {
+	@apply flex justify-center
+}
+
+.loadWrapper span {
+	@apply loading loading-spinner text-primary mx-auto mt-32
+}

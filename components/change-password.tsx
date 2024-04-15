@@ -5,7 +5,6 @@ import FormError from './form-error'
 import FormSuccess from './form-success'
 import FormWarning from './form-warning'
 import checkToken from '@/actions/check-token'
-import signOut from '@/actions/sign-out'
 import setToken from '@/actions/set-token'
 import IChangePasswordData from '@/types/change-password-data'
 

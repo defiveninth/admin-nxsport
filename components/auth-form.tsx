@@ -4,7 +4,7 @@ import { FC, useState, ChangeEvent, FormEvent, useEffect } from 'react'
 import UsernameIcon from './username-icon'
 import PasswordIcon from './password-icon'
 import FormInput from './form-input'
-import IFormData from '@/types/formdata'
+import { ISignInData } from '@/types/formdata'
 import FormError from './form-error'
 import setToken from '@/actions/set-token'
 import checkToken from '@/actions/check-token'
@@ -20,7 +20,7 @@ const AuthForm: FC = () => {
 		checkTokenAndRedirect()
 	}, [])
 
-	const [formData, setFormData] = useState<IFormData>({
+	const [formData, setFormData] = useState<ISignInData>({
 		username: '',
 		password: '',
 		isLoading: false,
@@ -30,7 +30,7 @@ const AuthForm: FC = () => {
 
 	const handleChange = (
 		e: ChangeEvent<HTMLInputElement>,
-		field: keyof IFormData
+		field: keyof ISignInData
 	) => {
 		if (error) setError('')
 		const { value } = e.target

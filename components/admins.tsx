@@ -2,13 +2,16 @@
 
 import React, { FC, useState, useEffect } from 'react'
 import AdminInput from './admin-input'
-import IUserData from '@/types/user-data'
-import checkToken from '@/actions/check-token'
 import AdminCard from './admin-card'
+import checkToken from '@/actions/check-token'
+import IUserData from '@/types/user-data'
+import S from '@/styles/admin-list.module.css'
 
 const AdminPage: FC = () => {
 	const [query, setQuery] = useState<string>('')
 	const [admins, setAdmins] = useState<Array<IUserData>>([])
+	const [error, setError] = useState<string>('')
+	const [isLoading, setIsLoading] = useState<boolean>(true)
 
 	const fetchAdmins = async () => {
 		const T = await checkToken()
@@ -21,15 +24,14 @@ const AdminPage: FC = () => {
 				body: JSON.stringify({ token: T }),
 			})
 
-			if (!response.ok) {
-				throw new Error('Failed to fetch admins')
-			}
+			if (!response.ok) setError('Failed to fetch admins')
 
 			const data = await response.json()
 			setAdmins(data)
 		} catch (error) {
-			console.error('Error fetching admins:', error)
+			setError('Error fetching admins: ' + error)
 		}
+		setIsLoading(false)
 	}
 
 	useEffect(() => {
@@ -39,7 +41,11 @@ const AdminPage: FC = () => {
 	return (
 		<>
 			<AdminInput query={query} setQuery={setQuery} />
-			{admins.length !== 0 ? (
+			{isLoading ? (
+				<div className={ S.loadWrapper }>
+					<span></span>
+				</div>
+			) : admins.length !== 0 ? (
 				admins.map(admin => (
 					<AdminCard
 						key={admin.id}
@@ -50,6 +56,8 @@ const AdminPage: FC = () => {
 						isSuperUser={admin.isSuperUser}
 					/>
 				))
+			) : error ? (
+				error
 			) : (
 				<p>Здесь нету админов</p>
 			)}

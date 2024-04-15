@@ -12,6 +12,7 @@ const ProfileCard: FC = () => {
 		name: '',
 		surname: '',
 		username: '',
+		isSuperUser: ''
 	})
 	const [loading, setIsLoading] = useState<boolean>(true)
 
@@ -33,7 +34,6 @@ const ProfileCard: FC = () => {
         if (response.ok) setData(res)
 				else signOut()
       } catch (error) {
-        console.log(error)
 				signOut()
       } finally {
 				setIsLoading(false)

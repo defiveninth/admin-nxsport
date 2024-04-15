@@ -19,8 +19,6 @@ const route: Array<IRoute> = [
 ]
 
 const Admins: FC = () => {
-	
-
 	return (
 		<>
 			<Nav now='admins' />
