@@ -4,7 +4,7 @@ import { UserCheck } from 'lucide-react'
 import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
 import IRoute from '@/types/route'
-import AdminList from '@/components/admins'
+import AdminPage from '@/components/admins'
 
 export const metadata: Metadata = {
 	title: 'Нархоз Спорт | Админы',
@@ -26,7 +26,7 @@ const Admins: FC = () => {
 			<Nav now='admins' />
 			<main className='ml-[320px]'>
 				<CurrentRoute route={route} />
-				<AdminList />
+				<AdminPage />
 			</main>
 		</>
 	)

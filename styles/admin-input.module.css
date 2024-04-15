@@ -1,0 +1,19 @@
+.inputWrapper {
+	@apply mr-5 flex gap-5
+}
+
+.inputWrapper label {
+	@apply input input-bordered flex items-center gap-2 grow
+}
+
+.inputWrapper label input {
+	@apply grow
+}
+
+.inputWrapper label kbd {
+	@apply kbd kbd-sm
+}
+
+.inputWrapper a {
+	@apply bg-[#7875c3] px-7 rounded-lg font-medium hover:bg-[#9c99ec] transition-all	text-white flex items-center gap-2
+}

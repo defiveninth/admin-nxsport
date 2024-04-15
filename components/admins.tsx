@@ -1,55 +1,60 @@
 'use client'
 
-import { FC, useEffect, useRef } from 'react'
-import Link from 'next/link'
-import { CirclePlus } from 'lucide-react'
+import React, { FC, useState, useEffect } from 'react'
+import AdminInput from './admin-input'
+import IUserData from '@/types/user-data'
+import checkToken from '@/actions/check-token'
+import AdminCard from './admin-card'
 
-const AdminList: FC = () => {
-	const inputRef = useRef<HTMLInputElement>(null)
+const AdminPage: FC = () => {
+	const [query, setQuery] = useState<string>('')
+	const [admins, setAdmins] = useState<Array<IUserData>>([])
 
-	const isMac = typeof window !== 'undefined' && window.navigator.platform === 'MacIntel'
+	const fetchAdmins = async () => {
+		const T = await checkToken()
+		try {
+			const response = await fetch('http://localhost:3001/auth/get-admins', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ token: T }),
+			})
 
-	const handleShortcut = (event: KeyboardEvent) => {
-		if ((isMac ? event.metaKey : event.ctrlKey) && event.key === 'k') {
-			event.preventDefault()
-			if (inputRef.current) {
-				inputRef.current.focus()
+			if (!response.ok) {
+				throw new Error('Failed to fetch admins')
 			}
+
+			const data = await response.json()
+			setAdmins(data)
+		} catch (error) {
+			console.error('Error fetching admins:', error)
 		}
 	}
 
 	useEffect(() => {
-		document.addEventListener('keydown', handleShortcut)
-
-		return () => {
-			document.removeEventListener('keydown', handleShortcut)
-		}
+		fetchAdmins()
 	}, [])
 
 	return (
 		<>
-			<div className='mr-5 flex gap-5'>
-				<label className='input input-bordered flex items-center gap-2 grow'>
-					<input
-						ref={inputRef}
-						type='text'
-						className='grow'
-						placeholder='Search'
+			<AdminInput query={query} setQuery={setQuery} />
+			{admins.length !== 0 ? (
+				admins.map(admin => (
+					<AdminCard
+						key={admin.id}
+						id={admin.id}
+						name={admin.name}
+						surname={admin.surname}
+						username={admin.username}
+						isSuperUser={admin.isSuperUser}
 					/>
-					<kbd className='kbd kbd-sm'>{isMac ? '⌘' : 'Ctrl'}</kbd>
-					<kbd className='kbd kbd-sm'>+</kbd>
-					<kbd className='kbd kbd-sm'>K</kbd>
-				</label>
-				<Link
-					href={'admins/add'}
-					className='bg-[#7875c3] px-7 rounded-lg font-medium hover:bg-[#9c99ec] transition-all	text-white flex items-center gap-2'
-				>
-					<CirclePlus />
-					<span>Добавить админа</span>
-				</Link>
-			</div>
+				))
+			) : (
+				<p>Здесь нету админов</p>
+			)}
 		</>
 	)
 }
 
-export default AdminList
+export default AdminPage

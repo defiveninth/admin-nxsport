@@ -1,0 +1,15 @@
+.listCard {
+	@apply bg-[#d0cdff] mt-5 mr-5 p-4 rounded-lg flex items-center gap-5 px-10
+}
+
+.seperator {
+	@apply h-[20px] w-[1px] bg-black
+}
+
+.name {
+	@apply font-medium
+}
+
+.username {
+	@apply text-blue-600 hover:underline;
+}
