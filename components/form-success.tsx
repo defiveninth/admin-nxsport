@@ -1,6 +1,10 @@
 import { FC } from 'react'
 
-const FormSuccess: FC = () => {
+interface IFormSuccessProps {
+	T: 'change-password' | 'sign-up'
+}
+
+const FormSuccess: FC<IFormSuccessProps> = ({ T }) => {
 	return (
 		<>
 			<div role='alert' className='alert alert-info'>
@@ -17,7 +21,8 @@ const FormSuccess: FC = () => {
 						d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
 					/>
 				</svg>
-				<span>Ваш пароль успешно изменен</span>
+				{ T === 'change-password' && <span>Ваш пароль успешно изменен</span> }
+				{ T === 'sign-up' && <span>Пользователь успешно создан</span> }
 			</div>
 		</>
 	)

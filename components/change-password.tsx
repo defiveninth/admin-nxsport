@@ -112,7 +112,7 @@ const ChangePassword: FC = () => {
 					onChange={handleChange}
 					minLength={5}
 				/>
-				{success && <FormSuccess />}
+				{success && <FormSuccess T='change-password' />}
 				{error && <FormError error={error} />}
 				<button type='submit'>Изменить</button>
 			</form>
