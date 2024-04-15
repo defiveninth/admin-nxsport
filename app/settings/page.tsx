@@ -1,10 +1,21 @@
 import { FC } from 'react'
 import type { Metadata } from 'next'
+import { Bolt } from 'lucide-react'
 import Nav from '@/components/nav'
+import CurrentRoute from '@/components/current-route'
+import IRoute from '@/types/route'
 
 export const metadata: Metadata = {
 	title: 'Нархоз Спорт | Настройки',
 }
+
+const route: Array<IRoute> = [
+	{
+		icon: Bolt,
+		route: 'Настройки',
+		url: '/settings'
+	},
+]
 
 const softColors = [
 	'#F0F8FF', // Alice Blue
@@ -19,11 +30,12 @@ const softColors = [
 	'#FDF5E6', // Old Lace
 ]
 
-const Controll: FC = () => {
+const SettingsPage: FC = () => {
 	return (
 		<>
-			<Nav now='sections' />
+			<Nav now='settings' />
 			<main className='ml-[320px]'>
+				<CurrentRoute route={ route } />
 				{softColors.map((color, index) => (
 					<span
 						key={index}
@@ -40,4 +52,4 @@ const Controll: FC = () => {
 	)
 }
 
-export default Controll
+export default SettingsPage

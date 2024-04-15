@@ -36,7 +36,7 @@ const SignUpForm: FC = () => {
 				body: JSON.stringify(formData),
 			})
 			if (!response.ok) setError('Невозможно создать пользователья')
-			const data = await response.json()
+			setSuccess('Новый админ успешно был создан')
 			setFormData({
 				username: '',
 				password: '',
@@ -45,6 +45,7 @@ const SignUpForm: FC = () => {
 				surname: '',
 			})
 		} catch (error) {
+			setSuccess('')
 			setError('Невозможно создать пользователья')
 		}
 	}

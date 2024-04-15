@@ -4,6 +4,7 @@ import { Newspaper } from 'lucide-react'
 import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
 import IRoute from '@/types/route'
+import CreatePostForm from '@/components/create-post-form'
 
 export const metadata: Metadata = {
   title: 'Нархоз Спорт | Новости',
@@ -23,6 +24,7 @@ const News: FC = () => {
 			<Nav now='news' />
 			<main className='ml-[320px]'>
 				<CurrentRoute route={ route } />
+				<CreatePostForm />
 			</main>
 		</>
 	)

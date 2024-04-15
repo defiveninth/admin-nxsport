@@ -3,10 +3,9 @@ import type { Metadata } from 'next'
 import { Bolt, KeyRound } from 'lucide-react'
 import Nav from '@/components/nav'
 import CurrentRoute from '@/components/current-route'
-import IRoute from '@/types/route'
 import ChangePassword from '@/components/change-password'
+import IRoute from '@/types/route'
 import S from '@/styles/change-password.module.css'
-
 
 const route: Array<IRoute> = [
 	{
@@ -28,7 +27,7 @@ export const metadata: Metadata = {
 const Settings: FC = () => {
 	return (
 		<>
-			<Nav now='settings/change-password' />
+			<Nav now='settings' />
 			<main className='ml-[320px]'>
 				<CurrentRoute route={ route } />
 				<div className={ S.formWrapper }>
