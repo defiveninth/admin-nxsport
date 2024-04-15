@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { UserRoundCheck } from 'lucide-react'
 import IUserData from '@/types/user-data'
 import S from '@/styles/admin-list.module.css'
@@ -9,7 +9,7 @@ const AdminCard: FC<IUserData> = ({ id, name, surname, username, isSuperUser }) 
 			<UserRoundCheck />
 			<div className={S.seperator} />
 			<p className={S.name}>
-				{name} {surname}
+				{surname} {name}
 			</p>
 			<div className={S.seperator} />
 			<p className={S.username}>@{username}</p>

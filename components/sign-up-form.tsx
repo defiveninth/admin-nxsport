@@ -3,6 +3,7 @@
 import { ChangeEvent, FC, FormEvent, useState } from 'react'
 import { ISignUpData } from '@/types/formdata'
 import FormSuccess from './form-success'
+import FormError from './form-error'
 
 const SignUpForm: FC = () => {
 	const [formData, setFormData] = useState<ISignUpData>({
@@ -13,8 +14,10 @@ const SignUpForm: FC = () => {
 		surname: '',
 	})
 	const [success, setSuccess] = useState<string>('')
+	const [error, setError] = useState<string>('')
 
 	const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+		if (error) setError('')
 		const { name, value } = event.target
 		setFormData({
 			...formData,
@@ -32,11 +35,8 @@ const SignUpForm: FC = () => {
 				},
 				body: JSON.stringify(formData),
 			})
-			if (!response.ok) {
-				throw new Error('Network response was not ok')
-			}
+			if (!response.ok) setError('Невозможно создать пользователья')
 			const data = await response.json()
-			console.log('SignUp successful:', data)
 			setFormData({
 				username: '',
 				password: '',
@@ -45,7 +45,7 @@ const SignUpForm: FC = () => {
 				surname: '',
 			})
 		} catch (error) {
-			console.error('Error while signing up:', error)
+			setError('Невозможно создать пользователья')
 		}
 	}
 
@@ -82,6 +82,7 @@ const SignUpForm: FC = () => {
 			/>
 			<button>Зарегистрировать</button>
 			{ success && <FormSuccess T='sign-up' /> }
+			{ error && <FormError error={ error } /> }
 		</form>
 	)
 }
