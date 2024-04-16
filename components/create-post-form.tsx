@@ -3,7 +3,7 @@
 import { FC, FormEvent, useState } from 'react'
 import { Ban } from 'lucide-react'
 import FormError from './form-error'
-import IPostData from '@/types/post-data'
+import IPostData, { createPostData } from '@/types/post-data'
 
 const placeHolderText: Array<string> = [
 	'Поделитесь своими мыслями о нархозе',
@@ -17,8 +17,12 @@ const placeHolderText: Array<string> = [
 	'Что сегодня будет анонсировать?',
 ]
 
-const CreatePostForm: FC = () => {
-	const [formData, setFormData] = useState<IPostData>({
+interface ICreatePostFormProps {
+	addPost: (newPostData: Pick<IPostData, "title" | "description">) => void
+}
+
+const CreatePostForm: FC<ICreatePostFormProps> = ({ addPost }) => {
+	const [formData, setFormData] = useState<createPostData>({
 		title: '',
 		description: '',
 	})
@@ -57,7 +61,8 @@ const CreatePostForm: FC = () => {
 			}
 
 			setSuccess('Пост был успешно создан')
-
+			
+			addPost(formData)
 			setFormData({ title: '', description: '' })
 			setError('')
 		} catch (error) {
