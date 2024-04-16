@@ -3,7 +3,6 @@
 import { FC, useState, ChangeEvent, FormEvent } from 'react'
 import FormError from './form-error'
 import FormSuccess from './form-success'
-import FormWarning from './form-warning'
 import checkToken from '@/actions/check-token'
 import setToken from '@/actions/set-token'
 import IChangePasswordData from '@/types/change-password-data'
@@ -116,7 +115,6 @@ const ChangePassword: FC = () => {
 				{error && <FormError error={error} />}
 				<button type='submit'>Изменить</button>
 			</form>
-			<FormWarning />
 		</>
 	)
 }

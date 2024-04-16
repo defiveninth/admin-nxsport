@@ -97,19 +97,19 @@ const CreatePostForm: FC = () => {
 				></textarea>
 				{error && <FormError error={error} />}
 				<div className='flex h-11 gap-5 font-semibold'>
-					<button
+					<button	
 						type='button'
-						className='bg-red-500 text-white px-4 rounded-lg'
+						className='bg-red-500 hover:bg-red-600 text-white px-4 rounded-lg'
 						onClick={() => {
 							setFormData({ title: '', description: '' })
 							setError('')
 						}}
 						title='Очистить формы'
-					>
+					>	
 						<Ban />
 					</button>
 					<button
-						className='bg-cyan-400 hover:bg-cyan-300 hover:text-gray-700 transition-colors grow rounded-lg text-black'
+						className='bg-blue-400 hover:bg-blue-500 transition-colors grow rounded-lg text-red-50'
 						type='submit'
 					>
 						Создать

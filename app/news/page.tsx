@@ -3,8 +3,9 @@ import type { Metadata } from 'next'
 import { Newspaper } from 'lucide-react'
 import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
-import IRoute from '@/types/route'
+import Posts from '@/components/news'
 import CreatePostForm from '@/components/create-post-form'
+import IRoute from '@/types/route'
 
 export const metadata: Metadata = {
   title: 'Нархоз Спорт | Новости',
@@ -25,6 +26,7 @@ const News: FC = () => {
 			<main className='ml-[320px]'>
 				<CurrentRoute route={ route } />
 				<CreatePostForm />
+				<Posts />
 			</main>
 		</>
 	)
