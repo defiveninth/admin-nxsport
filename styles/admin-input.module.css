@@ -14,6 +14,6 @@
 	@apply kbd kbd-sm
 }
 
-.inputWrapper a {
-	@apply bg-[#7875c3] px-7 rounded-lg font-medium hover:bg-[#9c99ec] transition-all	text-white flex items-center gap-2
+.inputWrapper a, .inputWrapper button {
+	@apply bg-[#cc0836] px-7 rounded-lg font-medium hover:bg-[#f03535] transition-all	text-white flex items-center gap-2
 }

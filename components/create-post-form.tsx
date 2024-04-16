@@ -3,7 +3,8 @@
 import { FC, FormEvent, useState } from 'react'
 import { Ban } from 'lucide-react'
 import FormError from './form-error'
-import IPostData, { createPostData } from '@/types/post-data'
+import { createPostData } from '@/types/post-data'
+import ICreatePostFormProps from '@/types/create-post-form.props'
 
 const placeHolderText: Array<string> = [
 	'Поделитесь своими мыслями о нархозе',
@@ -17,11 +18,7 @@ const placeHolderText: Array<string> = [
 	'Что сегодня будет анонсировать?',
 ]
 
-interface ICreatePostFormProps {
-	addPost: (newPostData: Pick<IPostData, "title" | "description">) => void
-}
-
-const CreatePostForm: FC<ICreatePostFormProps> = ({ addPost }) => {
+const CreatePostForm: FC<ICreatePostFormProps> = ({ handleReFetch }) => {
 	const [formData, setFormData] = useState<createPostData>({
 		title: '',
 		description: '',
@@ -56,13 +53,10 @@ const CreatePostForm: FC<ICreatePostFormProps> = ({ addPost }) => {
 				body: JSON.stringify(formData),
 			})
 
-			if (!response.ok) {
-				setError('Failed to create post')
-			}
+			if (!response.ok) setError('Failed to create post')
 
 			setSuccess('Пост был успешно создан')
-			
-			addPost(formData)
+			handleReFetch()
 			setFormData({ title: '', description: '' })
 			setError('')
 		} catch (error) {
@@ -75,7 +69,7 @@ const CreatePostForm: FC<ICreatePostFormProps> = ({ addPost }) => {
 	})
 
 	return (
-		<div className='bg-[#F8F8FF] mr-5 p-4 rounded-2xl flex justify-center'>
+		<div className='bg-[#fff8f8] mr-5 p-4 rounded-2xl flex justify-center'>
 			<form
 				className='max-w-[888px] w-full flex flex-col gap-5'
 				onSubmit={handleFormSubmit}
@@ -83,7 +77,7 @@ const CreatePostForm: FC<ICreatePostFormProps> = ({ addPost }) => {
 				<h2 className='font-semibold text-2xl'>Создать новый пост:</h2>
 				<input
 					placeholder='Заголовок'
-					className='input input-bordered input-primary w-full bg-white font-medium text-lg'
+					className='input input-bordered input-error w-full bg-white font-medium text-lg'
 					value={formData.title}
 					onChange={e => {
 						setFormData({ ...formData, title: e.target.value })
@@ -91,7 +85,7 @@ const CreatePostForm: FC<ICreatePostFormProps> = ({ addPost }) => {
 					}}
 				/>
 				<textarea
-					className='textarea textarea-primary font-medium text-lg'
+					className='textarea textarea-error font-medium text-lg'
 					placeholder={placeholder}
 					rows={3}
 					value={formData.description}
@@ -104,7 +98,7 @@ const CreatePostForm: FC<ICreatePostFormProps> = ({ addPost }) => {
 				<div className='flex h-11 gap-5 font-semibold'>
 					<button	
 						type='button'
-						className='bg-red-500 hover:bg-red-600 text-white px-4 rounded-lg'
+						className='bg-[#cc0836] hover:bg-transparent text-white hover:text-black  px-4 rounded-lg transition-colors border-[#cc0836] border-solid border-2'
 						onClick={() => {
 							setFormData({ title: '', description: '' })
 							setError('')
@@ -114,7 +108,7 @@ const CreatePostForm: FC<ICreatePostFormProps> = ({ addPost }) => {
 						<Ban />
 					</button>
 					<button
-						className='bg-blue-400 hover:bg-blue-500 transition-colors grow rounded-lg text-red-50'
+						className='bg-black hover:bg-transparent hover:text-black transition-colors grow rounded-lg text-red-50 border-black border-2 border-solid'
 						type='submit'
 					>
 						Создать

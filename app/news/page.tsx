@@ -20,25 +20,26 @@ const route: Array<IRoute> = [
 const News: FC = () => {
 	const [posts, setPosts] = useState<Array<IPostData>>([])
 
-	useEffect(() => {
-		const fetchPosts = async () => {
-			try {
-				const response = await fetch('http://localhost:3001/news/all')
-				if (!response.ok) {
-					throw new Error('Failed to fetch posts')
-				}
-				const postData = await response.json()
-
-				const postsWithBorderColor = postData.map((post: IPostData) => ({
-					...post,
-					borderColor: getRandomHexColor(),
-				}))
-
-				setPosts(postsWithBorderColor.reverse())
-			} catch (error) {
-				console.error('Error fetching posts:', error)
+	const fetchPosts = async () => {
+		try {
+			const response = await fetch('http://localhost:3001/news/all')
+			if (!response.ok) {
+				throw new Error('Failed to fetch posts')
 			}
+			const postData = await response.json()
+
+			const postsWithBorderColor = postData.map((post: IPostData) => ({
+				...post,
+				borderColor: getRandomHexColor(),
+			}))
+
+			setPosts(postsWithBorderColor.reverse())
+		} catch (error) {
+			console.error('Error fetching posts:', error)
 		}
+	}
+
+	useEffect(() => {
 		fetchPosts()
 	}, [])
 
@@ -54,30 +55,9 @@ const News: FC = () => {
 		return `#${hexRed}${hexGreen}${hexBlue}`
 	}
 
-	const handleDeletePost = (postId: number) => {
-		const filteredPosts = posts.filter(post => post.id !== postId)
-		setPosts(filteredPosts)
+	const handleReFetch = () => {
+		fetchPosts()
 	}
-
-	const handleEditPost = (postId: number, updatedPost: IPostData) => {
-		const index = posts.findIndex(post => post.id === postId)
-		if (index !== -1) {
-			const newPosts = [...posts]
-			newPosts[index] = updatedPost
-			setPosts(newPosts)
-		}
-	}
-
-	const handleAddPost = (newPostData: Pick<IPostData, 'title' | 'description'>) => {
-		const newPost: IPostData = {
-			...newPostData,
-			id: posts.length + 1,
-			borderColor: getRandomHexColor(),
-			date: '2024-12-12'
-		}
-
-    setPosts(prevPosts => [newPost, ...prevPosts])
-  }
 
 	return (
 		<>
@@ -85,8 +65,8 @@ const News: FC = () => {
 			<Nav now='news' />
 			<main className='ml-[320px]'>
 				<CurrentRoute route={route} />
-				<CreatePostForm addPost={ handleAddPost } />
-				<Posts posts={posts} deleter={handleDeletePost} />
+				<CreatePostForm handleReFetch={ handleReFetch } />
+				<Posts posts={posts} handleReFetch={handleReFetch} />
 			</main>
 		</>
 	)

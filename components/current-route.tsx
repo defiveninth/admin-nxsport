@@ -5,7 +5,7 @@ import R from '@/types/current-route.props'
 
 const CurrentRoute: FC<R> = ({ route }) => {
 	return (
-		<div className='bg-[#EFEEFF] mt-5 p-4 flex mr-5 rounded-2xl mb-5'>
+		<div className='bg-[#ffeeee] mt-5 p-4 flex mr-5 rounded-2xl mb-5'>
 			{route.map(r => (
 					<Link
 						href={r.url}

@@ -1,5 +1,5 @@
 .listCard {
-	@apply bg-[#d0cdff] mt-5 mr-5 p-4 rounded-lg flex items-center gap-5 px-10
+	@apply bg-[#ffeeee] mt-5 mr-5 p-4 rounded-lg flex items-center gap-5 px-10
 }
 
 .seperator {

@@ -38,15 +38,23 @@ const AdminPage: FC = () => {
 		fetchAdmins()
 	}, [])
 
+	const filteredAdmins = admins.filter(
+		admin =>
+			admin.id.toString().includes(query) ||
+			admin.name.toLowerCase().includes(query.toLowerCase()) ||
+			admin.surname.toLowerCase().includes(query.toLowerCase()) ||
+			admin.username.toLowerCase().includes(query.toLowerCase())
+	)
+
 	return (
 		<>
 			<AdminInput query={query} setQuery={setQuery} />
 			{isLoading ? (
-				<div className={ S.loadWrapper }>
+				<div className={S.loadWrapper}>
 					<span></span>
 				</div>
-			) : admins.length !== 0 ? (
-				admins.map(admin => (
+			) : filteredAdmins.length !== 0 ? (
+				filteredAdmins.map(admin => (
 					<AdminCard
 						key={admin.id}
 						id={admin.id}
@@ -59,7 +67,7 @@ const AdminPage: FC = () => {
 			) : error ? (
 				error
 			) : (
-				<p>Здесь нету админов</p>
+				<p>Здесь нет админов</p>
 			)}
 		</>
 	)

@@ -1,17 +1,31 @@
 import { FC } from 'react'
 import { EllipsisVertical, Pencil, CircleX } from 'lucide-react'
+import INewsDropdownProps from '@/types/news-dropdown.props'
 
-interface INewsDropdownProps {
-	postId: number
-}
-
-const NewsDropdown: FC<INewsDropdownProps> = ({ postId }) => {
+const NewsDropdown: FC<INewsDropdownProps> = ({ postId, handleReFetch }) => {
 	const editPost = () => {
 		console.log('edit post' + postId)
 	}
 
-	const deletePost = () => {
-		console.log('delete post' + postId)
+	const deletePost = async () => {
+		try {
+			const response = await fetch(
+				`http://localhost:3001/news/delete`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ postId })
+				}
+			)
+
+			if (!response.ok) throw new Error(`Failed to delete post with ID ${postId}`)
+
+			handleReFetch()
+		} catch (error) {
+			console.error('Error deleting post:', error)
+		}
 	}
 
 	return (
@@ -25,13 +39,13 @@ const NewsDropdown: FC<INewsDropdownProps> = ({ postId }) => {
 					className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52'
 				>
 					<li>
-						<button className='flex items-center gap-4' onClick={ editPost }>
+						<button className='flex items-center gap-4' onClick={editPost}>
 							<Pencil width={18} height={18} />
 							<span>Редактировать</span>
 						</button>
 					</li>
 					<li>
-						<button className='flex items-center gap-4' onClick={ deletePost }>
+						<button className='flex items-center gap-4' onClick={deletePost}>
 							<CircleX width={18} height={18} />
 							<span>Удалить</span>
 						</button>
