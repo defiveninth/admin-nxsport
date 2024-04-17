@@ -33,6 +33,7 @@ const ActionsPage: FC = () => {
 						userName: item.user_name,
 						userSurname: item.user_surname,
 						userId: item.user_id,
+						userRole: item.user_role
 					}))
 				)
 			} catch (error) {
@@ -77,10 +78,10 @@ const ActionsPage: FC = () => {
 						className='font-medium'
 						onClick={() => setQuery(String(action.userId))}
 					>
-						{action.userSurname} {action.userName}
+						<span className='text-red-600 mr-2'>{ action.userRole ? 'Студент' : 'Тренер' }</span> {action.userSurname} {action.userName}
 					</button>
 					<p>{action.action}</p>
-					<p>Date: {formatAlmatyDate(action.date)}</p>
+					<p className='ml-auto'>Date: {formatAlmatyDate(action.date)}</p>
 				</div>
 			))}
 		</>

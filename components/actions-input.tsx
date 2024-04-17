@@ -58,7 +58,7 @@ const ActionsInput: FC<IActionsInputProps> = ({
 					onChange={e => setQuery(e.target.value)}
 				/>
 				{query ? (
-					<X onClick={ () => setQuery('') } />
+					<X onClick={ () => setQuery('') } className='hover:bg-gray-300 p-1 rounded-full' />
 				) : (
 					<>
 						<kbd>{isMac ? '⌘' : 'Ctrl'}</kbd>

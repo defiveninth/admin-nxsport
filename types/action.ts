@@ -5,6 +5,7 @@ interface Action {
 	userName: string
 	userSurname: string
 	userId: number
+	userRole: 0 | 1
 }
 
 export default Action
