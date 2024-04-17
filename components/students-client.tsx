@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { GraduationCap, SendHorizontal, Mail } from 'lucide-react'
 import Role from '@/types/role'
 import User from '@/types/user'
+import Image from 'next/image'
 
 const StudentsPage: FC = () => {
 	const [roles, setRoles] = useState<Role[]>([])
@@ -38,7 +39,6 @@ const StudentsPage: FC = () => {
 
 	return (
 		<>
-			<h2>Студенты</h2>
 			<div>
 				{users
 					.filter(user => {
@@ -48,11 +48,12 @@ const StudentsPage: FC = () => {
 					.map(user => (
 						<div
 							key={user.id}
-							className='bg-red-50 mr-5 mt-5 p-5 rounded-2xl flex gap-5'
+							className='bg-red-50 mr-5 mt-5 py-2 px-5  rounded-2xl flex gap-5 items-center'
 						>
-							<p className='min-w-64 flex gap-5'>
-								<GraduationCap /> {user.first_name} {user.last_name}
-							</p>
+							<img src={user.profile_photo} width={50} height={50} className='rounded-full h-[50px] w-[50px]' />
+							<Link href={`users/${user.id}`} className='min-w-64 flex gap-5'>
+								{user.first_name} {user.last_name}
+							</Link>
 							<Link
 								href={`https://wa.me/${user.phone_number.replace(
 									/\s|\(|\)/g,
