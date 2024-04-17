@@ -1,18 +1,31 @@
-import { Dispatch, FC, SetStateAction, useCallback, useEffect, useRef } from 'react'
-import { Filter, FilterX } from 'lucide-react'
+import {
+	Dispatch,
+	FC,
+	SetStateAction,
+	useCallback,
+	useEffect,
+	useRef,
+} from 'react'
+import { Filter, FilterX, X } from 'lucide-react'
 import S from '@/styles/admin-input.module.css'
 
 interface IActionsInputProps {
-	query: string;
-	setQuery: Dispatch<SetStateAction<string>>;
-	isFilterOpen: boolean;
-	setIsFilterOpen: Dispatch<SetStateAction<boolean>>;
+	query: string
+	setQuery: Dispatch<SetStateAction<string>>
+	isFilterOpen: boolean
+	setIsFilterOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const ActionsInput: FC<IActionsInputProps> = ({ query, setQuery, isFilterOpen, setIsFilterOpen }) => {
+const ActionsInput: FC<IActionsInputProps> = ({
+	query,
+	setQuery,
+	isFilterOpen,
+	setIsFilterOpen,
+}) => {
 	const inputRef = useRef<HTMLInputElement>(null)
 
-	const isMac = typeof window !== 'undefined' && window.navigator.platform === 'MacIntel'
+	const isMac =
+		typeof window !== 'undefined' && window.navigator.platform === 'MacIntel'
 
 	const handleShortcut = useCallback(
 		(event: KeyboardEvent) => {
@@ -44,12 +57,18 @@ const ActionsInput: FC<IActionsInputProps> = ({ query, setQuery, isFilterOpen, s
 					value={query}
 					onChange={e => setQuery(e.target.value)}
 				/>
-				<kbd>{isMac ? '⌘' : 'Ctrl'}</kbd>
-				<kbd>+</kbd>
-				<kbd>K</kbd>
+				{query ? (
+					<X onClick={ () => setQuery('') } />
+				) : (
+					<>
+						<kbd>{isMac ? '⌘' : 'Ctrl'}</kbd>
+						<kbd>+</kbd>
+						<kbd>K</kbd>
+					</>
+				)}
 			</label>
-			<button className='filter' onClick={ () => setIsFilterOpen(!isFilterOpen) }>
-				{ isFilterOpen ? (
+			<button className='filter' onClick={() => setIsFilterOpen(!isFilterOpen)}>
+				{isFilterOpen ? (
 					<>
 						<FilterX />
 						<span>Закрыть</span>
@@ -59,7 +78,7 @@ const ActionsInput: FC<IActionsInputProps> = ({ query, setQuery, isFilterOpen, s
 						<Filter />
 						<span>Фильтр</span>
 					</>
-				) }
+				)}
 			</button>
 		</div>
 	)

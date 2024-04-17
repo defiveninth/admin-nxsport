@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import IFormInputProps from '@/types/form-input.props'
 
-const FormInput: FC<IFormInputProps> = ({ icon: Icon, T, placeholder, length, onChange, name }) => {
+const FormInput: FC<IFormInputProps> = ({ icon: Icon, T, placeholder, length, onChange, data, name }) => {
 	return (
 		<>
 			<label>
