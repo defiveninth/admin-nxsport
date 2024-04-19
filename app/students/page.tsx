@@ -1,20 +1,20 @@
-import { FC } from 'react'
-import type { Metadata } from 'next'
-import { GraduationCap } from 'lucide-react'
-import Nav from '@/components/nav'
+import StudentsPage from '@/_pages/students'
 import CurrentRoute from '@/components/current-route'
-import StudentsPage from '@/pages/students'
+import Nav from '@/components/nav'
 import IRoute from '@/types/route'
+import { GraduationCap } from 'lucide-react'
+import type { Metadata } from 'next'
+import { FC } from 'react'
 
 export const metadata: Metadata = {
-  title: 'Нархоз Спорт | Студенты',
+	title: 'Нархоз Спорт | Студенты',
 }
 
 const route: Array<IRoute> = [
 	{
 		icon: GraduationCap,
 		route: 'Студенты',
-		url: '/students'
+		url: '/students',
 	},
 ]
 
@@ -23,7 +23,7 @@ const Students: FC = () => {
 		<>
 			<Nav now='students' />
 			<main className='ml-[320px]'>
-				<CurrentRoute route={ route } />
+				<CurrentRoute route={route} />
 				<StudentsPage />
 			</main>
 		</>

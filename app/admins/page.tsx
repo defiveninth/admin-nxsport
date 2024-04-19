@@ -1,10 +1,10 @@
-import { FC } from 'react'
+import AdminsPage from '@/_pages/admins'
 import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
-import AdminsPage from '@/pages/admins'
 import IRoute from '@/types/route'
 import { UserCheck } from 'lucide-react'
 import type { Metadata } from 'next'
+import { FC } from 'react'
 
 export const metadata: Metadata = {
 	title: 'Нархоз Спорт | Админы',
