@@ -4,8 +4,8 @@ import checkToken from '@/actions/check-token'
 import S from '@/styles/admin-list.module.css'
 import IUserData from '@/types/user-data'
 import { FC, useEffect, useState } from 'react'
-import AdminCard from '../admin-card'
-import AdminInput from '../admin-input'
+import AdminCard from '../components/admin-card'
+import AdminInput from '../components/admin-input'
 
 const AdminsPage: FC = () => {
 	const [query, setQuery] = useState<string>('')

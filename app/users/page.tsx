@@ -1,9 +1,9 @@
-import { FC } from 'react'
-import { ShieldAlert, Users } from 'lucide-react'
 import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
-import UserNotFoundPage from '@/components/pages/user-not-found-page'
+import UserNotFoundPage from '@/pages/user-not-found-page'
 import IRoute from '@/types/route'
+import { ShieldAlert, Users } from 'lucide-react'
+import { FC } from 'react'
 
 const route: Array<IRoute> = [
 	{

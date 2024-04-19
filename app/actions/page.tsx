@@ -1,10 +1,10 @@
 import { FC } from 'react'
-import { Activity } from 'lucide-react'
-import type { Metadata } from 'next'
-import IRoute from '@/types/route'
 import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
-import ActionsPage from '@/components/pages/actions-page'
+import ActionsPage from '@/pages/actions-page'
+import IRoute from '@/types/route'
+import { Activity } from 'lucide-react'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
 	title: 'Нархоз Спорт | Действий',

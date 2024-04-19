@@ -1,9 +1,9 @@
-import { FC } from 'react'
-import { UserCheck, CirclePlus } from 'lucide-react'
-import Nav from '@/components/nav'
 import CurrentRoute from '@/components/current-route'
-import AdminsAddPage from '@/components/pages/admins-add-page'
+import Nav from '@/components/nav'
+import AdminsAddPage from '@/pages/admins-add-page'
 import IRoute from '@/types/route'
+import { CirclePlus, UserCheck } from 'lucide-react'
+import { FC } from 'react'
 
 const route: Array<IRoute> = [
 	{

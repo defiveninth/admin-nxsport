@@ -1,10 +1,10 @@
 'use client'
 
-import { FC, useState, useEffect } from 'react'
-import CreatePostForm from '../create-post-form'
-import Posts from '../news'
-import IPostData from '@/types/post-data'
 import getRandomHexColor from '@/actions/get-random-hex-colr'
+import IPostData from '@/types/post-data'
+import { FC, useEffect, useState } from 'react'
+import CreatePostForm from '../components/create-post-form'
+import Posts from '../components/news'
 
 const NewsPage: FC = () => {
 	const [posts, setPosts] = useState<Array<IPostData>>([])
@@ -34,8 +34,8 @@ const NewsPage: FC = () => {
 
 	return (
 		<>
-				<CreatePostForm handleReFetch={ fetchPosts } />
-				<Posts posts={posts} handleReFetch={fetchPosts} />
+			<CreatePostForm handleReFetch={fetchPosts} />
+			<Posts posts={posts} handleReFetch={fetchPosts} />
 		</>
 	)
 }

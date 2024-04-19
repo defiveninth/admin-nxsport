@@ -10,7 +10,7 @@ function UserNotFoundPage() {
 				</h2>
 				<h2 className='text-center mt-5'>
 					<Link
-						href={'/'}
+						href={'/sections'}
 						className='btn btn-outline btn-error mx-auto text-center px-16'
 					>
 						Домой

@@ -1,9 +1,9 @@
-import { FC } from 'react'
-import { Newspaper } from 'lucide-react'
 import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
-import NewsPage from '@/components/pages/news-page'
+import NewsPage from '@/pages/news-page'
 import IRoute from '@/types/route'
+import { Newspaper } from 'lucide-react'
+import { FC } from 'react'
 
 const route: Array<IRoute> = [
 	{

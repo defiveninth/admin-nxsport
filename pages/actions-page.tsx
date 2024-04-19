@@ -3,8 +3,8 @@
 import formatAlmatyDate from '@/actions/format-almaty-date'
 import Action from '@/types/action'
 import { FC, useEffect, useState } from 'react'
-import ActionsFilter from '../actions-filter'
-import ActionsInput from '../actions-input'
+import ActionsFilter from '../components/actions-filter'
+import ActionsInput from '../components/actions-input'
 
 const ActionsPage: FC = () => {
 	const [actions, setActions] = useState<Action[]>([])
