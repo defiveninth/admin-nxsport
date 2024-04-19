@@ -2,9 +2,8 @@ import { FC } from 'react'
 import { UserCheck, CirclePlus } from 'lucide-react'
 import Nav from '@/components/nav'
 import CurrentRoute from '@/components/current-route'
+import AdminsAddPage from '@/components/pages/admins-add-page'
 import IRoute from '@/types/route'
-import SignUpForm from '@/components/sign-up-form'
-import S from '@/styles/sign-up-form.module.css'
 
 const route: Array<IRoute> = [
 	{
@@ -25,9 +24,7 @@ const AddAdmin: FC = () => {
 			<Nav now='admins' />
 			<main className='ml-[320px]'>
 				<CurrentRoute route={route} />
-				<div className={ S.formWrapper }>
-					<SignUpForm />
-				</div>
+				<AdminsAddPage />
 			</main>
 		</>
 	)

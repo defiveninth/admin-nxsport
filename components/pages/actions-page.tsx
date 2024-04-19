@@ -1,10 +1,10 @@
 'use client'
 
-import { FC, useState, useEffect } from 'react'
-import ActionsInput from './actions-input'
-import ActionsFilter from './actions-filter'
-import Action from '@/types/action'
 import formatAlmatyDate from '@/actions/format-almaty-date'
+import Action from '@/types/action'
+import { FC, useEffect, useState } from 'react'
+import ActionsFilter from '../actions-filter'
+import ActionsInput from '../actions-input'
 
 const ActionsPage: FC = () => {
 	const [actions, setActions] = useState<Action[]>([])
@@ -33,7 +33,7 @@ const ActionsPage: FC = () => {
 						userName: item.user_name,
 						userSurname: item.user_surname,
 						userId: item.user_id,
-						userRole: item.user_role
+						userRole: item.user_role,
 					}))
 				)
 			} catch (error) {
@@ -78,7 +78,10 @@ const ActionsPage: FC = () => {
 						className='font-medium'
 						onClick={() => setQuery(String(action.userId))}
 					>
-						<span className='text-red-600 mr-2'>{ action.userRole ? 'Студент' : 'Тренер' }</span> {action.userSurname} {action.userName}
+						<span className='text-red-600 mr-2'>
+							{action.userRole ? 'Студент' : 'Тренер'}
+						</span>{' '}
+						{action.userSurname} {action.userName}
 					</button>
 					<p>{action.action}</p>
 					<p className='ml-auto'>Date: {formatAlmatyDate(action.date)}</p>

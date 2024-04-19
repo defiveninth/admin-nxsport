@@ -1,9 +1,9 @@
 import { FC } from 'react'
+import { ShieldAlert, Users } from 'lucide-react'
+import Link from 'next/link'
 import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
 import IRoute from '@/types/route'
-import { ShieldAlert, Users } from 'lucide-react'
-import Link from 'next/link'
 
 const route: Array<IRoute> = [
 	{

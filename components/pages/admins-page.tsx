@@ -1,13 +1,13 @@
 'use client'
 
-import React, { FC, useState, useEffect } from 'react'
-import AdminInput from './admin-input'
-import AdminCard from './admin-card'
 import checkToken from '@/actions/check-token'
-import IUserData from '@/types/user-data'
 import S from '@/styles/admin-list.module.css'
+import IUserData from '@/types/user-data'
+import { FC, useEffect, useState } from 'react'
+import AdminCard from '../admin-card'
+import AdminInput from '../admin-input'
 
-const AdminPage: FC = () => {
+const AdminsPage: FC = () => {
 	const [query, setQuery] = useState<string>('')
 	const [admins, setAdmins] = useState<Array<IUserData>>([])
 	const [error, setError] = useState<string>('')
@@ -73,4 +73,4 @@ const AdminPage: FC = () => {
 	)
 }
 
-export default AdminPage
+export default AdminsPage

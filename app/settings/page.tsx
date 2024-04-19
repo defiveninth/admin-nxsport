@@ -4,7 +4,7 @@ import { Bolt } from 'lucide-react'
 import Nav from '@/components/nav'
 import CurrentRoute from '@/components/current-route'
 import IRoute from '@/types/route'
-import Test from '@/components/test'
+import SettingsPage from '@/components/pages/settings-page'
 
 export const metadata: Metadata = {
 	title: 'Нархоз Спорт | Настройки',
@@ -18,16 +18,16 @@ const route: Array<IRoute> = [
 	},
 ]
 
-const SettingsPage: FC = () => {
+const Settings: FC = () => {
 	return (
 		<>
 			<Nav now='settings' />
 			<main className='ml-[320px]'>
 				<CurrentRoute route={ route } />
-				<Test />
+				<SettingsPage />
 			</main>
 		</>
 	)
 }
 
-export default SettingsPage
+export default Settings
