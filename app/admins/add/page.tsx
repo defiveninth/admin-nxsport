@@ -1,6 +1,6 @@
 import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
-import AdminsAddPage from '@/pages/admins-add-page'
+import AdminsAddPage from '@/pages/admins-add'
 import IRoute from '@/types/route'
 import { CirclePlus, UserCheck } from 'lucide-react'
 import { FC } from 'react'

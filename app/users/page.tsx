@@ -1,6 +1,6 @@
 import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
-import UserNotFoundPage from '@/pages/user-not-found-page'
+import UserNotFoundPage from '@/pages/user-not-found'
 import IRoute from '@/types/route'
 import { ShieldAlert, Users } from 'lucide-react'
 import { FC } from 'react'

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { GraduationCap } from 'lucide-react'
 import Nav from '@/components/nav'
 import CurrentRoute from '@/components/current-route'
-import StudentsPage from '@/components/students-client'
+import StudentsPage from '@/pages/students'
 import IRoute from '@/types/route'
 
 export const metadata: Metadata = {

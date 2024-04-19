@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
-import ActionsPage from '@/pages/actions-page'
+import ActionsPage from '@/pages/actions'
 import IRoute from '@/types/route'
 import { Activity } from 'lucide-react'
 import type { Metadata } from 'next'

@@ -2,10 +2,9 @@
 
 import { FC, useState, useEffect } from 'react'
 import Link from 'next/link'
-import { GraduationCap, SendHorizontal, Mail } from 'lucide-react'
+import { SendHorizontal, Mail } from 'lucide-react'
 import Role from '@/types/role'
 import User from '@/types/user'
-import Image from 'next/image'
 
 const StudentsPage: FC = () => {
 	const [roles, setRoles] = useState<Role[]>([])

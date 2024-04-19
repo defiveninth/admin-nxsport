@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
-import AdminsPage from '@/pages/admins-page'
+import AdminsPage from '@/pages/admins'
 import IRoute from '@/types/route'
 import { UserCheck } from 'lucide-react'
 import type { Metadata } from 'next'

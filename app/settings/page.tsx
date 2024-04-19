@@ -1,6 +1,6 @@
 import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
-import SettingsPage from '@/pages/settings-page'
+import SettingsPage from '@/pages/settings'
 import IRoute from '@/types/route'
 import { Bolt } from 'lucide-react'
 import type { Metadata } from 'next'

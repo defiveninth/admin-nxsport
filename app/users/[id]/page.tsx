@@ -1,5 +1,5 @@
 import Nav from '@/components/nav'
-import UserProfilePage from '@/pages/user-profile-page'
+import UserProfilePage from '@/pages/user-profile'
 import IUserProfileProps from '@/types/user-profile.props'
 import { FC } from 'react'
 

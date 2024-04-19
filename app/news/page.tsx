@@ -1,6 +1,6 @@
 import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
-import NewsPage from '@/pages/news-page'
+import NewsPage from '@/pages/news'
 import IRoute from '@/types/route'
 import { Newspaper } from 'lucide-react'
 import { FC } from 'react'
