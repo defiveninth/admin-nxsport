@@ -1,6 +1,6 @@
-import StudentsPage from '@/_pages/students'
 import CurrentRoute from '@/components/current-route'
 import Nav from '@/components/nav'
+import StudentsPage from '@/screens/students'
 import IRoute from '@/types/route'
 import { GraduationCap } from 'lucide-react'
 import type { Metadata } from 'next'
