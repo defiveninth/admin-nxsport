@@ -5,7 +5,7 @@ interface User {
 	birth_date: string
 	phone_number: string
 	email: string
-	registration_date: string
+	registration_date: Date
 	profile_photo: string
 	verify: number
 	type_section: number

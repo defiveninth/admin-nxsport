@@ -2,8 +2,8 @@
 
 import { FC, useState, useEffect } from 'react'
 import Link from 'next/link'
-import { BadgeCheck, CircleUserRound, GraduationCap } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { BadgeCheck, CircleUserRound, GraduationCap } from 'lucide-react'
 import CurrentRoute from '@/components/current-route'
 import User from '@/types/user'
 import IRoute from '@/types/route'
@@ -11,6 +11,19 @@ import IRoute from '@/types/route'
 const UserProfilePage: FC<{ id: string }> = ({ id }) => {
 	const [userData, setUserData] = useState<User>()
 	const router = useRouter()
+
+	const formatAlmatyDate = (dateString: Date | string | undefined): string => {
+		if (!dateString) return ''
+	
+		const date = new Date(dateString);
+		const day = date.getDate().toString().padStart(2, '0');
+		const month = (date.getMonth() + 1).toString().padStart(2, '0');
+		const year = date.getFullYear();
+		const hours = date.getHours().toString().padStart(2, '0');
+		const minutes = date.getMinutes().toString().padStart(2, '0');
+	
+		return `${day}-${month}.${year} ${hours}:${minutes}`
+	}
 
 	useEffect(() => {
 		const fetchUserData = async () => {
@@ -39,7 +52,7 @@ const UserProfilePage: FC<{ id: string }> = ({ id }) => {
 				}
 
 				const userData = await response.json()
-				setUserData(userData)
+				setUserData({ ...userData,  })
 			} catch (error) {
 				console.error('Error fetching user data:', error)
 			}
@@ -77,7 +90,7 @@ const UserProfilePage: FC<{ id: string }> = ({ id }) => {
 				<div className='flex flex-col gap-1'>
 					<h2 className='text-3xl font-semibold flex items-center gap-2'>
               <span>{userData?.first_name} {userData?.last_name}</span>
-						  <BadgeCheck width={24} height={24} className='text-blue-700' />
+							{ userData?.verify === 1 && <BadgeCheck width={24} height={24} className='text-blue-700' />  }
 					</h2>
 					<span>{userData?.birth_date.split('-').reverse().join('-')}</span>
 					<Link
@@ -97,6 +110,7 @@ const UserProfilePage: FC<{ id: string }> = ({ id }) => {
 					>
 						{userData?.email}
 					</Link>
+					<h2>Дата регистраций: {formatAlmatyDate(userData?.registration_date)}</h2>
 				</div>
 			</div>
 			<pre>{JSON.stringify(userData, null, 2)}</pre>

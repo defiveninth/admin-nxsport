@@ -1,5 +1,5 @@
-const formatAlmatyDate = (date: Date) => {
-	return date.toLocaleString('en-US', {
+const formatAlmatyDate = (date: Date | undefined) => {
+	return date?.toLocaleString('en-US', {
 		timeZone: 'Asia/Almaty',
 		hour12: false,
 		hour: '2-digit',
