@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useState } from 'react'
+import { FC, FormEvent, useState } from 'react'
 import { Ban } from 'lucide-react'
 import ISection from '@/types/sections'
 import S from '@/styles/create-section.module.css'
@@ -14,19 +14,43 @@ const SectionsCreatePage: FC = () => {
 	})
   const [formError, setFormError] = useState<string>('')
 
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault()
-
-    if (!formState.name) {
-      setFormError('Имя секций не может быть пустым')
-      return
+	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  
+    try {
+      if (!formState.name) {
+        setFormError('Имя секций не может быть пустым');
+        return;
+      }
+  
+      if (!formState.description) {
+        setFormError('Описание секций не может быть пустым');
+        return;
+      }
+  
+      const response = await fetch('http://localhost:3001/sections/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to create section');
+      }
+  
+      setFormState({
+        name: '',
+        description: '',
+        type_section: 0,
+      });
+      setFormError('');
+    } catch (error) {
+      console.error('Error creating section:', error);
     }
-
-    if (!formState.description) {
-      setFormError('Описание секций не может быть пустым')
-      return
-    }
-	}
+  };
+  
 
 	const handleInputChange = (
 		event: React.ChangeEvent<
