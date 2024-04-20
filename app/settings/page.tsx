@@ -1,5 +1,5 @@
 import CurrentRoute from '@/components/current-route'
-import Nav from '@/components/nav'
+import Nav from '@/components/nav/nav'
 import SettingsPage from '@/screens/settings'
 import IRoute from '@/types/route'
 import { Bolt } from 'lucide-react'

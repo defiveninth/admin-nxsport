@@ -1,5 +1,5 @@
 import CurrentRoute from '@/components/current-route'
-import Nav from '@/components/nav'
+import Nav from '@/components/nav/nav'
 import StudentsPage from '@/screens/students'
 import IRoute from '@/types/route'
 import { GraduationCap } from 'lucide-react'

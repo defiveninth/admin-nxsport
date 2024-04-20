@@ -1,19 +1,19 @@
-import { FC } from 'react'
-import type { Metadata } from 'next'
-import { TrainFront } from 'lucide-react'
-import Nav from '@/components/nav'
-import IRoute from '@/types/route'
 import CurrentRoute from '@/components/current-route'
+import Nav from '@/components/nav/nav'
+import IRoute from '@/types/route'
+import { TrainFront } from 'lucide-react'
+import type { Metadata } from 'next'
+import { FC } from 'react'
 
 export const metadata: Metadata = {
-  title: 'Нархоз Спорт | Тренеры',
+	title: 'Нархоз Спорт | Тренеры',
 }
 
 const route: Array<IRoute> = [
 	{
 		icon: TrainFront,
 		route: 'Тренеры',
-		url: '/coaches'
+		url: '/coaches',
 	},
 ]
 
@@ -22,7 +22,7 @@ const Coaches: FC = () => {
 		<>
 			<Nav now='coaches' />
 			<main className='ml-[320px]'>
-				<CurrentRoute route={ route } />
+				<CurrentRoute route={route} />
 			</main>
 		</>
 	)

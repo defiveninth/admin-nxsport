@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, FormEvent, useState } from 'react'
+import { ChangeEvent, FC, FormEvent, useState } from 'react'
 import { Ban } from 'lucide-react'
 import ISection from '@/types/sections'
 import S from '@/styles/create-section.module.css'
@@ -12,48 +12,47 @@ const SectionsCreatePage: FC = () => {
 		description: '',
 		type_section: 0,
 	})
-  const [formError, setFormError] = useState<string>('')
+	const [formError, setFormError] = useState<string>('')
 
 	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-  
-    try {
-      if (!formState.name) {
-        setFormError('Имя секций не может быть пустым');
-        return;
-      }
-  
-      if (!formState.description) {
-        setFormError('Описание секций не может быть пустым');
-        return;
-      }
-  
-      const response = await fetch('http://localhost:3001/sections/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formState),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Failed to create section');
-      }
-  
-      setFormState({
-        name: '',
-        description: '',
-        type_section: 0,
-      });
-      setFormError('');
-    } catch (error) {
-      console.error('Error creating section:', error);
-    }
-  };
-  
+		event.preventDefault()
+
+		try {
+			if (!formState.name) {
+				setFormError('Имя секций не может быть пустым')
+				return
+			}
+
+			if (!formState.description) {
+				setFormError('Описание секций не может быть пустым')
+				return
+			}
+
+			const response = await fetch('http://localhost:3001/sections/create', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(formState),
+			})
+
+			if (!response.ok) {
+				throw new Error('Failed to create section')
+			}
+
+			setFormState({
+				name: '',
+				description: '',
+				type_section: 0,
+			})
+			setFormError('')
+		} catch (error) {
+			console.error('Error creating section:', error)
+		}
+	}
 
 	const handleInputChange = (
-		event: React.ChangeEvent<
+		event: ChangeEvent<
 			HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
 		>
 	) => {
@@ -91,7 +90,7 @@ const SectionsCreatePage: FC = () => {
 					<option value={0}>Обычный</option>
 					<option value={1}>Лечебный</option>
 				</select>
-        { formError && <FormError error={ formError } /> }
+				{formError && <FormError error={formError} />}
 				<div className='flex h-11 gap-5 font-semibold'>
 					<button
 						type='button'
@@ -103,7 +102,7 @@ const SectionsCreatePage: FC = () => {
 								description: '',
 								type_section: 0,
 							})
-              setFormError('')
+							setFormError('')
 						}}
 					>
 						<Ban />

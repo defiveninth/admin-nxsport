@@ -1,25 +1,25 @@
-import { FC } from 'react'
-import type { Metadata } from 'next'
-import { BookA, CirclePlus } from 'lucide-react'
-import SectionsCreatePage from '@/screens/sections-create'
-import Nav from '@/components/nav'
 import CurrentRoute from '@/components/current-route'
+import Nav from '@/components/nav/nav'
+import SectionsCreatePage from '@/screens/sections-create'
 import IRoute from '@/types/route'
+import { BookA, CirclePlus } from 'lucide-react'
+import type { Metadata } from 'next'
+import { FC } from 'react'
 
 export const metadata: Metadata = {
-  title: 'Нархоз Спорт | Создать Секцию',
+	title: 'Нархоз Спорт | Создать Секцию',
 }
 
 const route: Array<IRoute> = [
 	{
 		icon: BookA,
 		route: 'Секций',
-		url: '/sections'
+		url: '/sections',
 	},
 	{
 		icon: CirclePlus,
 		route: 'Создать',
-		url: '/sections/create'
+		url: '/sections/create',
 	},
 ]
 
@@ -28,7 +28,7 @@ const SectionEdit: FC = () => {
 		<>
 			<Nav now='sections' />
 			<main className='ml-[320px]'>
-				<CurrentRoute route={ route } />
+				<CurrentRoute route={route} />
 				<SectionsCreatePage />
 			</main>
 		</>

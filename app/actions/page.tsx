@@ -1,5 +1,5 @@
 import CurrentRoute from '@/components/current-route'
-import Nav from '@/components/nav'
+import Nav from '@/components/nav/nav'
 import ActionsPage from '@/screens/actions'
 import IRoute from '@/types/route'
 import { Activity } from 'lucide-react'
