@@ -1,13 +1,31 @@
 'use client'
 
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import SectionsInput from '../components/sections-input'
 import SectionsList from './sections-list'
-import Action from '@/types/action'
+import ISection from '@/types/sections'
 
 const SectionsPage: FC = () => {
-	const [actions, setActions] = useState<Array<Action>>([])
+	const [sections, setSections] = useState<Array<ISection>>([])
 	const [query, setQuery] = useState<string>('')
+
+	useEffect(() => {
+    const fetchSections = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/sections/get-all');
+        if (!response.ok) {
+          throw new Error('Failed to fetch sections');
+        }
+        const sectionsData = await response.json();
+        setSections(sectionsData);
+      } catch (error) {
+        console.error('Error fetching sections:', error);
+      }
+    };
+
+    fetchSections();
+  }, []);
+
 	return (
 		<>
 			<SectionsInput
@@ -16,6 +34,7 @@ const SectionsPage: FC = () => {
 			/>
 			<SectionsList
 				query={ query }
+				sections={ sections }
 			/>
 		</>
 	)
