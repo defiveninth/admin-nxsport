@@ -2,7 +2,7 @@
 
 import { FC, useEffect, useState } from 'react'
 import SectionsInput from '../components/sections-input'
-import SectionsList from './sections-list'
+import SectionsList from '../components/sections-list'
 import ISection from '@/types/sections'
 
 const SectionsPage: FC = () => {

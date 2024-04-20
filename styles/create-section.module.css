@@ -1,0 +1,27 @@
+.form {
+	@apply flex flex-col max-w-[888px] mx-auto gap-5
+}
+
+.form h2 {
+	@apply font-medium text-xl
+}
+
+.form input {
+	@apply input input-bordered input-error font-medium text-lg
+}
+
+.form textarea {
+	@apply textarea textarea-error font-medium text-lg
+}
+
+.form select {
+	@apply select select-error font-medium text-lg
+}
+
+.reset {
+	@apply bg-[#cc0836] hover:bg-transparent text-white hover:text-black  px-4 rounded-lg transition-colors border-[#cc0836] border-solid border-2
+}
+
+.submit {
+	@apply bg-black hover:bg-transparent hover:text-black transition-colors grow rounded-lg text-red-50 border-black border-2 border-solid
+}

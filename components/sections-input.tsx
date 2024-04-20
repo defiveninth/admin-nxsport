@@ -41,7 +41,7 @@ const SectionsInput: FC<ISectionsInputProps> = ({ query, setQuery }) => {
 					<input
 						ref={inputRef}
 						type='text'
-						placeholder='Пойск по имени, фамилий, юзернейм, действий и дате:'
+						placeholder='Пойск по имени секций:'
 						value={query}
 						onChange={e => setQuery(e.target.value)}
 					/>
