@@ -1,10 +1,13 @@
 import { FC } from 'react'
+import { useRouter } from 'next/navigation'
 import { EllipsisVertical, Pencil, CircleX } from 'lucide-react'
 import INewsDropdownProps from '@/types/news-dropdown.props'
 
 const SectionsDropDown: FC<INewsDropdownProps> = ({ 
 	postId, handleReFetch
 }) => {
+	const routeHandler = useRouter()
+
 	const deletePost = async () => {
 		try {
 			const response = await fetch(
@@ -37,7 +40,7 @@ const SectionsDropDown: FC<INewsDropdownProps> = ({
 					className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52'
 				>
 					<li>
-						<button className='flex items-center gap-4'>
+						<button className='flex items-center gap-4' onClick={() => routeHandler.push(`sections/edit/${postId}`)}>
 							<Pencil width={18} height={18} />
 							<span>Редактировать</span>
 						</button>

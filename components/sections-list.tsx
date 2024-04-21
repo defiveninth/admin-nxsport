@@ -17,7 +17,7 @@ const SectionsList: FC<ISectionsListProps> = ({ query, sections }) => {
 							<SectionsDropDown postId={s.id} handleReFetch={() => {}} />
 						</div>
 						<p className='text-gray-900'>{s.description}</p>
-						<p>Type: {s.type_section}</p>
+						<p className='mt-1'>Тип секций: {s.type_section === 0 ? 'Обычный' : 'Лечебный'}</p>
 					</div>
 				))}
 			</div>

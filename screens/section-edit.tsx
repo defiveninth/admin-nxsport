@@ -1,46 +1,49 @@
-'use client'
-
-import { ChangeEvent, FC, FormEvent, useState } from 'react'
-import { Ban } from 'lucide-react'
-import ISection from '@/types/sections'
+import { ChangeEvent, Dispatch, FC, FormEvent, SetStateAction, useState } from 'react'
 import FormError from '@/components/form-error'
+import ISection from '@/types/sections'
 import S from '@/styles/create-section.module.css'
+import { Ban } from 'lucide-react'
 
-const SectionsCreatePage: FC = () => {
-	const [formState, setFormState] = useState<Omit<ISection, 'id'>>({
-		name: '',
-		description: '',
-		type_section: 0,
-	})
+interface ISectionEditPageProps {
+	section: ISection;
+	setSection: Dispatch<SetStateAction<ISection>>
+}
+
+const SectionEditPage: FC<ISectionEditPageProps> = ({
+	section,
+	setSection
+}) => {
+	
 	const [formError, setFormError] = useState<string>('')
 
 	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
 
 		try {
-			if (!formState.name) {
+			if (!section.name) {
 				setFormError('Имя секций не может быть пустым')
 				return
 			}
 
-			if (!formState.description) {
+			if (!section.description) {
 				setFormError('Описание секций не может быть пустым')
 				return
 			}
 
-			const response = await fetch('http://localhost:3001/sections/create', {
+			const response = await fetch('http://localhost:3001/sections/edit', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify(formState),
+				body: JSON.stringify(section),
 			})
 
 			if (!response.ok) {
 				throw new Error('Failed to create section')
 			}
 
-			setFormState({
+			setSection({
+				id: section.id,
 				name: '',
 				description: '',
 				type_section: 0,
@@ -57,7 +60,7 @@ const SectionsCreatePage: FC = () => {
 		>
 	) => {
 		const { name, value } = event.target
-		setFormState(prevState => ({
+		setSection(prevState => ({
 			...prevState,
 			[name]: value,
 		}))
@@ -70,18 +73,18 @@ const SectionsCreatePage: FC = () => {
 				<input
 					placeholder='Имя Секций'
 					name='name'
-					value={formState.name}
+					value={section.name}
 					onChange={handleInputChange}
 				/>
 				<textarea
 					placeholder='Описание Секций'
 					name='description'
-					value={formState.description}
+					value={section.description}
 					onChange={handleInputChange}
 				></textarea>
 				<select
 					name='type_section'
-					value={formState.type_section}
+					value={section.type_section}
 					onChange={handleInputChange}
 				>
 					<option disabled value=''>
@@ -97,7 +100,8 @@ const SectionsCreatePage: FC = () => {
 						className={S.reset}
 						title='Очистить формы'
 						onClick={() => {
-							setFormState({
+							setSection({
+								id: section.id,
 								name: '',
 								description: '',
 								type_section: 0,
@@ -116,4 +120,4 @@ const SectionsCreatePage: FC = () => {
 	)
 }
 
-export default SectionsCreatePage
+export default SectionEditPage

@@ -1,12 +1,13 @@
 'use client'
 
 import { FC, useState, useEffect } from 'react';
-import { BookA, Edit3 } from 'lucide-react';
+import { BookA, Edit3, Shell } from 'lucide-react';
 import CurrentRoute from '@/components/current-route';
 import Nav from '@/components/nav/nav';
 import IRoute from '@/types/route';
 import ISection from '@/types/sections'
 import ISecionEditProps from '@/types/section-edit.props'
+import SectionEditPage from '@/screens/section-edit'
 
 const SectionEdit: FC<ISecionEditProps> = ({ params: { id } }) => {
   const [section, setSection] = useState<ISection>({
@@ -14,7 +15,7 @@ const SectionEdit: FC<ISecionEditProps> = ({ params: { id } }) => {
     name: '',
     description: '',
     type_section: 0,
-  });
+  })
 
 	const route: Array<IRoute> = [
 		{
@@ -25,10 +26,10 @@ const SectionEdit: FC<ISecionEditProps> = ({ params: { id } }) => {
 		{
 			icon: Edit3,
 			route: 'Редактировать',
-			url: '/sections/edit',
+			url: '/sections',
 		},
 		{
-			icon: BookA,
+			icon: Shell,
 			route: section.name,
 			url: `sections/edit/${section.id}`,
 		},
@@ -63,6 +64,7 @@ const SectionEdit: FC<ISecionEditProps> = ({ params: { id } }) => {
       <Nav now='sections' />
       <main className='ml-[320px]'>
         <CurrentRoute route={route} />
+				<SectionEditPage section={ section } setSection={ setSection } />
         {JSON.stringify(section)}
       </main>
     </>
