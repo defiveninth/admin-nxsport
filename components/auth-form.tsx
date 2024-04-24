@@ -45,7 +45,7 @@ const AuthForm: FC = () => {
 		setFormData({ ...formData, isLoading: true })
 
 		try {
-			const response = await fetch('http://localhost:3001/auth/sign-in', {
+			const response = await fetch('https://myapi.kz/auth/sign-in', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ const AuthForm: FC = () => {
 				setError('Ошибка авторизаций, Сервер не отвечает')
 			} else {
 				setError('Произошла ошибка при обработке запроса')
-			}
+			}	
 		} catch (e) {
 			setError('Произошла ошибка при обработке запроса')
 		} finally {

@@ -11,7 +11,7 @@ const NewsPage: FC = () => {
 
 	const fetchPosts = async () => {
 		try {
-			const response = await fetch('http://localhost:3001/news/all')
+			const response = await fetch('https://myapi.kz/news/all')
 			if (!response.ok) {
 				throw new Error('Failed to fetch posts')
 			}

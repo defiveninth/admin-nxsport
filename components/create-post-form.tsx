@@ -45,7 +45,7 @@ const CreatePostForm: FC<ICreatePostFormProps> = ({ handleReFetch }) => {
 		}
 
 		try {
-			const response = await fetch('http://localhost:3001/news/create', {
+			const response = await fetch('https://myapi.kz/news/create', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

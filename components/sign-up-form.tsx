@@ -28,7 +28,7 @@ const SignUpForm: FC = () => {
 	const submit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		try {
-			const response = await fetch('http://localhost:3001/auth/sign-up', {
+			const response = await fetch('https://myapi.kz/auth/sign-up', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

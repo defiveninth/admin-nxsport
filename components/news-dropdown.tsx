@@ -10,7 +10,7 @@ const NewsDropdown: FC<INewsDropdownProps> = ({ postId, handleReFetch }) => {
 	const deletePost = async () => {
 		try {
 			const response = await fetch(
-				`http://localhost:3001/news/delete`,
+				`https://myapi.kz/news/delete`,
 				{
 					method: 'POST',
 					headers: {

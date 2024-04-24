@@ -54,7 +54,7 @@ const ChangePassword: FC = () => {
 
 		try {
 			const response = await fetch(
-				'http://localhost:3001/auth/change-password',
+				'https://myapi.kz/auth/change-password',
 				{
 					method: 'POST',
 					headers: {

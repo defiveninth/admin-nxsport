@@ -11,7 +11,7 @@ const SectionsDropDown: FC<INewsDropdownProps> = ({
 	const deletePost = async () => {
 		try {
 			const response = await fetch(
-				`http://localhost:3001/sections/delete`,
+				`https://myapi.kz/sections/delete`,
 				{
 					method: 'POST',
 					headers: {
