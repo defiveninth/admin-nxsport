@@ -7,7 +7,7 @@ import {
 	GraduationCap,
 	Newspaper,
 	TrainFront,
-	UserCheck,
+	CalendarCheck2
 } from 'lucide-react'
 import { FC } from 'react'
 import NavItem from './nav-item'
@@ -27,6 +27,12 @@ const Nav: FC<INavProps> = ({ now }) => {
 					now={now === 'sections'}
 				/>
 				<NavItem
+					to='/calendar'
+					icon={CalendarCheck2}
+					text='Расписание Секций'
+					now={now === 'calendar'}
+				/>
+				<NavItem
 					to='/news'
 					icon={Newspaper}
 					text='Новости'
@@ -39,12 +45,6 @@ const Nav: FC<INavProps> = ({ now }) => {
 					now={now === 'actions'}
 				/>
 				<NavTitle text='Пользователей' />
-				<NavItem
-					to='/admins'
-					icon={UserCheck}
-					text='Админы'
-					now={now === 'admins'}
-				/>
 				<NavItem
 					to='/coaches'
 					icon={TrainFront}
