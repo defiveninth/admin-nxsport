@@ -30,7 +30,7 @@ const SectionEditPage: FC<ISectionEditPageProps> = ({
 				return
 			}
 
-			const response = await fetch('http://localhost:3001/sections/edit', {
+			const response = await fetch('https://myapi.kz/sections/edit', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

@@ -15,7 +15,7 @@ const ActionsPage: FC = () => {
 	useEffect(() => {
 		const fetchActions = async () => {
 			try {
-				const response = await fetch('http://localhost:3001/actions/get-all', {
+				const response = await fetch('https://myapi.kz/actions/get-all', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
