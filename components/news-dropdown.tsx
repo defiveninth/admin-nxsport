@@ -1,10 +1,14 @@
 import { FC } from 'react'
+import { useRouter } from 'next/navigation'
 import { EllipsisVertical, Pencil, CircleX } from 'lucide-react'
 import INewsDropdownProps from '@/types/news-dropdown.props'
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 
 const NewsDropdown: FC<INewsDropdownProps> = ({ postId, handleReFetch }) => {
+	const R: AppRouterInstance = useRouter()
+
 	const editPost = () => {
-		console.log('edit post' + postId)
+		R.push(`/news/edit/${postId}`)
 	}
 
 	const deletePost = async () => {
