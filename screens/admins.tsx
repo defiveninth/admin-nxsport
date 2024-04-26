@@ -16,7 +16,7 @@ const AdminsPage: FC = () => {
 	const fetchAdmins = async () => {
 		const T = await checkToken()
 		try {
-			const response = await fetch('https://myapi.kz/auth/get-admins', {
+			const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/get-admins`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

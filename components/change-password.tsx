@@ -54,7 +54,7 @@ const ChangePassword: FC = () => {
 
 		try {
 			const response = await fetch(
-				'https://myapi.kz/auth/change-password',
+				`${process.env.NEXT_PUBLIC_API_URL}/auth/change-password`,
 				{
 					method: 'POST',
 					headers: {

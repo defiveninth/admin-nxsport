@@ -11,7 +11,7 @@ const CalendarPage: FC = () => {
 		const fetchData = async () => {
 			try {
 				const response = await fetch(
-					'http://localhost:3001/section-dates/get-all'
+					`${process.env.NEXT_PUBLIC_API_URL}/section-dates/get-all`
 				)
 				if (!response.ok) {
 					throw new Error('Network response was not ok')

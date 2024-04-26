@@ -21,7 +21,7 @@ const ProfileCard: FC = () => {
 		const T = await checkToken()
 		if (!T) signOut()
       try {
-        const response = await fetch('https://myapi.kz/auth/get-admin-data', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/get-admin-data`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

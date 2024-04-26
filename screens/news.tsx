@@ -11,7 +11,7 @@ const NewsPage: FC = () => {
 
 	const fetchPosts = async () => {
 		try {
-			const response = await fetch('https://myapi.kz/news/all')
+			const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/news/all`)
 			if (!response.ok) {
 				throw new Error('Failed to fetch posts')
 			}

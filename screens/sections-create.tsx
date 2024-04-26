@@ -28,7 +28,7 @@ const SectionsCreatePage: FC = () => {
 				return
 			}
 
-			const response = await fetch('https://myapi.kz/sections/create', {
+			const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sections/create`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

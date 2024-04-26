@@ -42,10 +42,11 @@ const AuthForm: FC = () => {
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+		console.log(process.env.API_URL)
 		setFormData({ ...formData, isLoading: true })
 
 		try {
-			const response = await fetch('https://myapi.kz/auth/sign-in', {
+			const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/sign-in`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

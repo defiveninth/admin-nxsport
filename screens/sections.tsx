@@ -12,7 +12,7 @@ const SectionsPage: FC = () => {
 	useEffect(() => {
     const fetchSections = async () => {
       try {
-        const response = await fetch('https://myapi.kz/sections/get-all');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sections/get-all`);
         if (!response.ok) {
           throw new Error('Failed to fetch sections');
         }

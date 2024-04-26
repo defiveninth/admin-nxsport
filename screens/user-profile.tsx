@@ -29,7 +29,7 @@ const UserProfilePage: FC<{ id: string }> = ({ id }) => {
 		const fetchUserData = async () => {
 			try {
 				const response = await fetch(
-					'https://myapi.kz/users/get-user-data',
+					`${process.env.API_URL}/users/get-user-data`,
 					{
 						method: 'POST',
 						headers: {

@@ -38,7 +38,7 @@ const SectionEdit: FC<ISecionEditProps> = ({ params: { id } }) => {
   useEffect(() => {
     const fetchSection = async () => {
       try {
-        const response = await fetch('https://myapi.kz/sections/get-single', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sections/get-single`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -13,12 +13,12 @@ const StudentsPage: FC = () => {
 	useEffect(() => {
 		const fetchRolesAndUsers = async () => {
 			try {
-				const rolesResponse = await fetch('https://myapi.kz/roles/get-all')
+				const rolesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/roles/get-all`)
 				if (!rolesResponse.ok) throw new Error('Failed to fetch roles')
 				const rolesData = await rolesResponse.json()
 				setRoles(rolesData)
 
-				const usersResponse = await fetch('https://myapi.kz/users/get-all')
+				const usersResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/get-all`)
 				if (!usersResponse.ok) throw new Error('Failed to fetch users')
 				const usersData = await usersResponse.json()
 
