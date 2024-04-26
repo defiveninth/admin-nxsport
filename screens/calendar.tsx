@@ -5,7 +5,9 @@ import { GroupedData, SectionData } from '@/types/section-data'
 
 const CalendarPage: FC = () => {
 	const [data, setData] = useState<GroupedData[]>([])
-	const [trainerIds, setTrainerIds] = useState<number[]>([])
+	const [trainerData, setTrainerData] = useState<{
+		[key: number]: { first_name: string; last_name: string }
+	}>({})
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -13,14 +15,17 @@ const CalendarPage: FC = () => {
 				const response = await fetch(
 					`${process.env.NEXT_PUBLIC_API_URL}/section-dates/get-all`
 				)
+
 				if (!response.ok) {
 					throw new Error('Network response was not ok')
 				}
+
 				const jsonData = await response.json()
 				setData(jsonData)
 
 				const ids = extractTrainerIds(jsonData)
-				setTrainerIds(ids)
+				const trainers = await fetchTrainerData(ids)
+				setTrainerData(trainers)
 			} catch (error) {
 				console.error('Error fetching data:', error)
 			}
@@ -39,6 +44,42 @@ const CalendarPage: FC = () => {
 			})
 		})
 		return ids
+	}
+
+	const fetchTrainerData = async (trainerIds: number[]) => {
+		try {
+			const response = await fetch(
+				`${process.env.NEXT_PUBLIC_API_URL}/users/get-trainers-info`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ trainerIds }),
+				}
+			)
+
+			if (!response.ok) {
+				throw new Error('Network response was not ok')
+			}
+
+			const trainerData = await response.json()
+
+			const trainerMap: {
+				[key: number]: { first_name: string; last_name: string }
+			} = {}
+			trainerData.forEach((trainer: any) => {
+				trainerMap[trainer.id] = {
+					first_name: trainer.first_name,
+					last_name: trainer.last_name,
+				}
+			})
+
+			return trainerMap
+		} catch (error) {
+			console.error('Error fetching trainer data:', error)
+			return {}
+		}
 	}
 
 	return (
@@ -60,6 +101,10 @@ const CalendarPage: FC = () => {
 							<p>{section.training_time.split(':').slice(0, -1).join(':')}</p>
 							<p className='ml-20'>
 								{section.busy}/{section.quantity}
+							</p>
+							<p className='ml-20'>
+								{trainerData[section.trainer_info.user_id]?.first_name}{' '}
+								{trainerData[section.trainer_info.user_id]?.last_name}
 							</p>
 							<p className='ml-20'>{section.place.name}</p>
 						</div>
