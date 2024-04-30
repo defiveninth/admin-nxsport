@@ -65,7 +65,6 @@ const SectionEdit: FC<ISecionEditProps> = ({ params: { id } }) => {
       <main className='ml-[320px]'>
         <CurrentRoute route={route} />
 				<SectionEditPage section={ section } setSection={ setSection } />
-        {JSON.stringify(section)}
       </main>
     </>
   );

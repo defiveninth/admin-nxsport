@@ -16,9 +16,7 @@ const CalendarPage: FC = () => {
 					`${process.env.NEXT_PUBLIC_API_URL}/section-dates/get-all`
 				)
 
-				if (!response.ok) {
-					throw new Error('Network response was not ok')
-				}
+				if (!response.ok) throw new Error('Network response was not ok')
 
 				const jsonData = await response.json()
 				setData(jsonData)
