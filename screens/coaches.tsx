@@ -1,6 +1,7 @@
 'use client'
 
 import { FC, useEffect, useState } from 'react'
+import Link from 'next/link'
 import Trainer from '@/types/trainer'
 import User from '@/types/user'
 
@@ -58,8 +59,9 @@ const CoachesPage: FC = () => {
 						{trainers.map(trainer => {
 							const info = trainerInfo.find(info => info.id === trainer.user_id)
 							return (
-								<div key={trainer.id} className='bg-red-50 p-5 rounded-2xl mr5'>
-									{info && `${info.first_name} ${info.last_name}`}
+								<div key={trainer.id} className='bg-red-50 p-5 rounded-2xl flex items-center mr-5'>
+									<img src={ info?.profile_photo } alt={ info?.first_name } width={50} height={50} className='mr-5 rounded-full' />
+									<Link href={ `/users/${info?.id}` }>{ info?.first_name } { info?.last_name }</Link>
 								</div>
 							)
 						})}

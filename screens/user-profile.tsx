@@ -1,27 +1,32 @@
 'use client'
 
-import { FC, useState, useEffect } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { BadgeCheck, CircleUserRound, GraduationCap } from 'lucide-react'
+import { FC, useEffect, useState } from 'react'
 import CurrentRoute from '@/components/current-route'
-import User from '@/types/user'
+import UserContact from '@/components/profile/user-contact'
 import IRoute from '@/types/route'
+import User from '@/types/user'
+import { BadgeCheck, CircleUserRound, GraduationCap } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import calculateAge from '@/utils/calculate-age'
 
-const UserProfilePage: FC<{ id: string }> = ({ id }) => {
+interface IUserProfilePageProps {
+	id: string
+}
+
+const UserProfilePage: FC<IUserProfilePageProps> = ({ id }) => {
 	const [userData, setUserData] = useState<User>()
 	const router = useRouter()
 
 	const formatAlmatyDate = (dateString: Date | string | undefined): string => {
 		if (!dateString) return ''
-	
-		const date = new Date(dateString);
-		const day = date.getDate().toString().padStart(2, '0');
-		const month = (date.getMonth() + 1).toString().padStart(2, '0');
-		const year = date.getFullYear();
-		const hours = date.getHours().toString().padStart(2, '0');
-		const minutes = date.getMinutes().toString().padStart(2, '0');
-	
+
+		const date = new Date(dateString)
+		const day = date.getDate().toString().padStart(2, '0')
+		const month = (date.getMonth() + 1).toString().padStart(2, '0')
+		const year = date.getFullYear()
+		const hours = date.getHours().toString().padStart(2, '0')
+		const minutes = date.getMinutes().toString().padStart(2, '0')
+
 		return `${day}-${month}.${year} ${hours}:${minutes}`
 	}
 
@@ -29,7 +34,7 @@ const UserProfilePage: FC<{ id: string }> = ({ id }) => {
 		const fetchUserData = async () => {
 			try {
 				const response = await fetch(
-					`${process.env.API_URL}/users/get-user-data`,
+					`${process.env.NEXT_PUBLIC_API_URL}/users/get-user-data`,
 					{
 						method: 'POST',
 						headers: {
@@ -45,14 +50,14 @@ const UserProfilePage: FC<{ id: string }> = ({ id }) => {
 						response.status === 404 &&
 						errorData.message === 'Юзер не найден'
 					) {
-						router.push('/users')
+						router.push('/not-found')
 					} else {
 						throw new Error('Failed to fetch user data')
 					}
 				}
 
 				const userData = await response.json()
-				setUserData({ ...userData,  })
+				setUserData({ ...userData })
 			} catch (error) {
 				console.error('Error fetching user data:', error)
 			}
@@ -89,31 +94,29 @@ const UserProfilePage: FC<{ id: string }> = ({ id }) => {
 				/>
 				<div className='flex flex-col gap-1'>
 					<h2 className='text-3xl font-semibold flex items-center gap-2'>
-              <span>{userData?.first_name} {userData?.last_name}</span>
-							{ userData?.verify === 1 && <BadgeCheck width={24} height={24} className='text-blue-700' />  }
+						<span>
+							{userData?.first_name} {userData?.last_name}
+						</span>
+						{userData?.verify === 1 && (
+							<>
+								<BadgeCheck width={24} height={24} className='text-blue-700' />
+								<span className='font-normal text-base'>
+									( Пользователь верифицирован )
+								</span>
+							</>
+						)}
 					</h2>
-					<span>{userData?.birth_date.split('-').reverse().join('-')}</span>
-					<Link
-						href={`https://wa.me/${userData?.phone_number.replace(
-							/\s|\(|\)/g,
-							''
-						)}`}
-						target='_blank'
-						className='link link-primary'
-					>
-						{userData?.phone_number}
-					</Link>
-					<Link
-						href={`mailto:${userData?.email}`}
-						className='link link-primary'
-						target='_blank'
-					>
-						{userData?.email}
-					</Link>
-					<h2>Дата регистраций: {formatAlmatyDate(userData?.registration_date)}</h2>
+					<span>
+						{userData?.birth_date.split('-').reverse().join('-')} (
+						{calculateAge(userData?.birth_date)} лет)
+					</span>
+
+					<h2>
+						Дата регистраций: {formatAlmatyDate(userData?.registration_date)}
+					</h2>
 				</div>
 			</div>
-			<pre>{JSON.stringify(userData, null, 2)}</pre>
+			<UserContact userData={userData} />
 		</>
 	)
 }

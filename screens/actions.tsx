@@ -76,7 +76,7 @@ const ActionsPage: FC = () => {
 				>
 					<button
 						className='font-medium'
-						onClick={() => setQuery(String(action.userId))}
+						onClick={() => setQuery(String(action.userName))}
 					>
 						<span className='text-red-600 mr-2'>
 							{action.userRole ? 'Студент' : 'Тренер'}

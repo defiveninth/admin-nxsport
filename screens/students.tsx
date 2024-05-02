@@ -50,7 +50,7 @@ const StudentsPage: FC = () => {
 							className='bg-red-50 mr-5 mt-5 py-2 px-5  rounded-2xl flex gap-5 items-center'
 						>
 							<img src={user.profile_photo} width={50} height={50} className='rounded-full h-[50px] w-[50px]' />
-							<Link href={`users/${user.id}`} className='min-w-64 flex gap-5'>
+							<Link href={`students/${user.id}`} className='min-w-64 flex gap-5'>
 								{user.first_name} {user.last_name}
 							</Link>
 							<Link
