@@ -7,4 +7,6 @@ interface IPostData {
 }
 
 export type createPostData = Pick<IPostData, 'title' | 'description'>
+export type editPostData = Pick<IPostData, 'id' | 'title' | 'description'>
+
 export default IPostData

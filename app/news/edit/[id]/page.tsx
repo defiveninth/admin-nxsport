@@ -31,7 +31,7 @@ const NewsEdit: FC<INewsEditProps> = ({ params: { id } }) => {
 			<Nav now='news' />
 			<main className='ml-[320px]'>
 				<CurrentRoute route={route} />
-				<NewsEditPage />
+				<NewsEditPage postId={parseInt(id)} />
 			</main>
 		</>
 	)
