@@ -57,7 +57,7 @@ const UserProfilePage: FC<IUserProfilePageProps> = ({ id }) => {
 	const route: Array<IRoute> = [
 		{
 			icon: GraduationCap,
-			route: 'Студенты',
+			route: userData?.role === 1 ? 'Студенты' : 'Трейнеры',
 			url: '/students',
 		},
 		{
@@ -67,12 +67,16 @@ const UserProfilePage: FC<IUserProfilePageProps> = ({ id }) => {
 		},
 	]
 
+	useEffect(() => {
+		document.title = `Нархоз Спорт | Профиль ${userData?.first_name} ${userData?.last_name}`
+	}, [userData])
+
 	return (
 		<>
 			<CurrentRoute route={route} />
 			<ProfileCard userData={userData} />
 			<UserContact userData={userData} />
-			<UserSections uuid={ userData?.id } />
+			{userData?.role === 1 && <UserSections uuid={userData?.id} />}
 		</>
 	)
 }

@@ -48,7 +48,7 @@ const Nav: FC<INavProps> = ({ now }) => {
 				<NavItem
 					to='/coaches'
 					icon={TrainFront}
-					text='Тренеры'
+					text='Трейнеры'
 					now={now === 'coaches'}
 				/>
 				<NavItem
