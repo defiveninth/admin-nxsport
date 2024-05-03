@@ -1,7 +1,8 @@
+'use client'
+
 import { FC, useEffect, useState } from 'react'
 import { GroupedData, SectionData } from '@/types/section-data'
 import Link from 'next/link'
-import NewsDropdown from '@/components/news-dropdown'
 import CalendarDropdown from '@/components/calendar-dropdown'
 
 const CalendarPage: FC = () => {
