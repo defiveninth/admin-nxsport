@@ -14,7 +14,7 @@ const CoachesPage: FC = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch('http://localhost:3001/trainers/get-all')
+				const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/trainers/get-all`)
 				if (!response.ok) {
 					throw new Error('Failed to fetch data')
 				}
@@ -23,7 +23,7 @@ const CoachesPage: FC = () => {
 
 				const trainerIds = data.map(trainer => trainer.user_id)
 				const infoResponse = await fetch(
-					'http://localhost:3001/users/get-trainers-info',
+					`${process.env.NEXT_PUBLIC_API_URL}/users/get-trainers-info`,
 					{
 						method: 'POST',
 						headers: {

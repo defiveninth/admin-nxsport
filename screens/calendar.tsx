@@ -1,7 +1,8 @@
-'use client'
-
 import { FC, useEffect, useState } from 'react'
 import { GroupedData, SectionData } from '@/types/section-data'
+import Link from 'next/link'
+import NewsDropdown from '@/components/news-dropdown'
+import CalendarDropdown from '@/components/calendar-dropdown'
 
 const CalendarPage: FC = () => {
 	const [data, setData] = useState<GroupedData[]>([])
@@ -80,6 +81,25 @@ const CalendarPage: FC = () => {
 		}
 	}
 
+	const handleReFetch = async () => {
+		try {
+			const response = await fetch(
+				`${process.env.NEXT_PUBLIC_API_URL}/section-dates/get-all`
+			)
+
+			if (!response.ok) throw new Error('Network response was not ok')
+
+			const jsonData = await response.json()
+			setData(jsonData)
+
+			const ids = extractTrainerIds(jsonData)
+			const trainers = await fetchTrainerData(ids)
+			setTrainerData(trainers)
+		} catch (error) {
+			console.error('Error refetching data:', error)
+		}
+	}
+
 	return (
 		<>
 			{data.map((group: GroupedData) => (
@@ -94,17 +114,21 @@ const CalendarPage: FC = () => {
 						>
 							<p className='w-[277px]'>
 								{section.section_info.name}:{' '}
-								{section.type === 0 ? 'Обычный' : 'Больной'}
+								{section.type === 0 ? 'Обычный' : 'Лечебный'}
 							</p>
 							<p>{section.training_time.split(':').slice(0, -1).join(':')}</p>
 							<p className='ml-20'>
 								{section.busy}/{section.quantity}
 							</p>
-							<p className='ml-20'>
+							<Link
+								className='ml-20 text-blue-400 hover:text-blue-600 hover:underline'
+								href={`/coaches/${section.trainer_info.user_id}`}
+							>
 								{trainerData[section.trainer_info.user_id]?.first_name}{' '}
 								{trainerData[section.trainer_info.user_id]?.last_name}
-							</p>
+							</Link>
 							<p className='ml-20'>{section.place.name}</p>
+							<CalendarDropdown handleReFetch={handleReFetch} />
 						</div>
 					))}
 				</div>
