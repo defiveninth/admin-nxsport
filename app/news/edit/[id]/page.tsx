@@ -5,6 +5,7 @@ import IRoute from '@/types/route'
 import { Newspaper, Pencil } from 'lucide-react'
 import Nav from '@/components/nav/nav'
 import CurrentRoute from '@/components/current-route'
+import NewsEditPage from '@/screens/news-edit'
 
 const route: Array<IRoute> = [
 	{
@@ -30,7 +31,7 @@ const NewsEdit: FC<INewsEditProps> = ({ params: { id } }) => {
 			<Nav now='news' />
 			<main className='ml-[320px]'>
 				<CurrentRoute route={route} />
-				123
+				<NewsEditPage />
 			</main>
 		</>
 	)
