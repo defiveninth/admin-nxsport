@@ -9,6 +9,7 @@ import { CircleUserRound, GraduationCap } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import ProfileCard from '@/components/profile/profile-card'
 import UserSections from '@/components/profile/user-sections'
+import UserActions from '@/components/profile/user-actions'
 
 interface IUserProfilePageProps {
 	id: string
@@ -77,6 +78,9 @@ const UserProfilePage: FC<IUserProfilePageProps> = ({ id }) => {
 			<ProfileCard userData={userData} />
 			<UserContact userData={userData} />
 			{userData?.role === 1 && <UserSections uuid={userData?.id} />}
+			<UserActions
+				id={userData?.id!}
+			/>
 		</>
 	)
 }

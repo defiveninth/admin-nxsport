@@ -23,7 +23,7 @@ const UserSections: FC<IUserSectionsProps> = ({ uuid }) => {
 
 	useEffect(() => {
 		if (uuid) {
-			fetch(`http://localhost:3001/user-sections/get-sections-by-id`, {
+			fetch(`${process.env.NEXT_PUBLIC_API_URL}/user-sections/get-sections-by-id`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
